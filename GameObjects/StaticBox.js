@@ -8,6 +8,5 @@ class StaticBox extends Box {
     super(x, y, w, h, options);
     // make body static
     this.body.isStatic = true;
-
   }
 }

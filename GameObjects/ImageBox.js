@@ -2,17 +2,18 @@
 class ImageBox extends SpriteGameObject {
 
   constructor(x, y, sprite, world, options = null) {
+    // pass variable to upper class
     super(x, y, sprite);
+
     // save variables to object
     this.x = x;
     this.y = y;
 
     // add matter.js options for physics
     this.options = options;
+
     // add rigidbody physics to box
     this.body = Matter.Bodies.rectangle(this.x, this.y, this.w, this.h, this.options);
-    // then add to World
-    Matter.World.add(world, this.body);
   }
 
   update() {

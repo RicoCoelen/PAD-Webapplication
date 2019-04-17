@@ -31,6 +31,5 @@ class GameStateManager {
     if (name in this.children) {
       this.currentGameState = this.children[name];
     }
-    //this.currentGameState as GameObjectList;
   }
 }
