@@ -6,6 +6,8 @@ class PlayingState extends GameObjectList {
   constructor() {
     // call base class
     super();
+    //creates the particle system
+    this.particleSystem = new ParticleSystem(createVector(500,500));
 
     // create the player and the cannon
     this.player = new Player(200, height - 150, 50, {isStatic: false, render: {visible: false}, restitution: 0.2, friction: 11});
@@ -45,5 +47,8 @@ class PlayingState extends GameObjectList {
     this.add(this.theCannon);
     this.add(this.blocks);
     this.add(this.texts);
+
+    // add the ParticleSystem
+    this.add(this.particleSystem);
   }
 }
