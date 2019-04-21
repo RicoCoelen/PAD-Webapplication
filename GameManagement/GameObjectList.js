@@ -5,12 +5,25 @@ class GameObjectList extends GameObject {
 
   constructor() {
     super();
+    this.reset();
+  }
+
+  reset() {
+    // make a list of children
     this.children = [];
-    this.engine = Matter.Engine.create();
+    // create engine with its options
+    this.engine = Matter.Engine.create({
+      render: {
+        options: {
+          wireframes:false,
+        }
+      }
+    });
+
+    // create world with this engine and this list
     this.world = this.engine.world;
+    // make the world child of this list
     this.world.parent = this;
-    // add mouse constraint if nesscesary
-    Matter.World.add(this.world, Matter.MouseConstraint.create(this.engine));
   }
 
   update() {
