@@ -14,7 +14,7 @@ class ParticleSystem extends GameObject{
 
   addParticle(){
 
-    this.waterParticles.push(new WaterParticle(this.x ,this.y,40));
+    this.waterParticles.push(new WaterParticle(this.x ,this.y, 40));
     console.log(this.waterParticles.length);
 
   }
@@ -26,7 +26,7 @@ class ParticleSystem extends GameObject{
       w.update();
       w.draw();
       if (w.isDead()) {
-        Matter.Composite.remove(world,this.body);
+        Matter.World.remove(world, this.WaterParticle, [deep=true])
         this.waterParticles.splice(i,1);
       }
     }

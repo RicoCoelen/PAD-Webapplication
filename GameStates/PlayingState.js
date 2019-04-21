@@ -14,10 +14,12 @@ class PlayingState extends GameObjectList {
 
     super.reset();
 
-    //this.particleSystem = new ParticleSystem(createVector(500,500));
+
     // add extra game object list to keep it ordered
     this.blocks = new GameObjectList();
     this.texts = new GameObjectList();
+
+    //this.particleSystem = new ParticleSystem(createVector(500,500));
 
     // create the player and the cannon/line
     this.player = new Player(200, height - 150, 20, {isStatic: false, restitution: 0.99});
