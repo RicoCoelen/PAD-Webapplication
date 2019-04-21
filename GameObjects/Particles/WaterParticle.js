@@ -40,6 +40,8 @@ class WaterParticle extends GameObject {
 
    isDead() {
      return this.lifespan < 0;
+     if(lifespan < 0){
+   }
   }
 
 }

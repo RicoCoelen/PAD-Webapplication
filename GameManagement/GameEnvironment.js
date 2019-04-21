@@ -6,13 +6,17 @@ class GameEnvironment {
   constructor() {
     this.gameStateManager = new GameStateManager();
     this.inputHandler = new InputHandler();
+
   }
 
   updateAndDraw() {
+
     this.gameStateManager.updateAndDraw();
+
   }
 
   handleInput() {
     this.gameStateManager.handleInput();
   }
+
 }

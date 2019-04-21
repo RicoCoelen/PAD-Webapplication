@@ -1,11 +1,13 @@
 var gameEnvironment;
 var world;
 var engine;
+var assets;
 
 function setup() {
   // create canvas.
   createCanvas(1080, 600);
 
+  assets = new AssetLoader();
 
   engine = Matter.Engine.create();
   world = engine.world;
@@ -18,8 +20,9 @@ function setup() {
   // add new states in the state list.
   gameEnvironment.gameStateManager.add(new PlayingState(), "PlayingState");
   gameEnvironment.gameStateManager.add(new TestState(), "TestState");
+  gameEnvironment.gameStateManager.add(new Level(), "Level");
   // change scene to first in array.
-  gameEnvironment.gameStateManager.switchTo("PlayingState");
+  gameEnvironment.gameStateManager.switchTo("Level");
 }
 
 function draw() {

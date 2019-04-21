@@ -10,7 +10,6 @@ class GameObject {
 
   setBody(bodyType) {
 
-    
 
   }
 
