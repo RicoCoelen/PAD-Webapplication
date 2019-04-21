@@ -6,16 +6,15 @@ class Circle extends GameObject {
   constructor(x, y, r, options = null) {
     // pass variables to upper class
     super(x, y);
+
     // save variables to object
     this.x = x;
     this.y = y;
     this.r = r;
     this.options = options;
+
     // add rigidbody physics to box
     this.body = Matter.Bodies.circle(this.x, this.y, this.r, this.options);
-    // then add to World
-    Matter.World.add(world, this.body);
-
   }
 
   update() {

@@ -7,24 +7,22 @@ class PlayingState extends GameObjectList {
     // call base class
     super();
     //creates the particle system
-    this.particleSystem = new ParticleSystem(createVector(500,500));
+    this.reset();
+  }
 
-    // create the player and the cannon
-    this.player = new Player(200, height - 150, 50, {isStatic: false, render: {visible: false}, restitution: 0.2, friction: 11});
-    this.theCannon = new Cannon(200, height - 150, 100, this.player);
+  reset() {
 
-    // // add extra game object list to keep it ordered
+    super.reset();
+
+    //this.particleSystem = new ParticleSystem(createVector(500,500));
+    // add extra game object list to keep it ordered
     this.blocks = new GameObjectList();
     this.texts = new GameObjectList();
 
-    // add object to array (list) more boxes
-    this.add(new Box(200,50,50,50));
-
-    // add circles
-    this.add(new Circle(400,50,35 ));
-
-    // // add image boxes
-    // this.add(new ImageBox(300, -300, this.world, "assets/star.png"));
+    // create the player and the cannon/line
+    this.player = new Player(200, height - 150, 20, {isStatic: false, restitution: 0.99});
+    this.theCannon = new Cannon(200, height - 150, 100, this.player);
+    this.tracingLine = new TracingLine(this.theCannon, this.player);
 
     // add static blocks
     this.blocks.add(new StaticBox(500, height - 50, 50, 75)); // 1st
@@ -47,8 +45,15 @@ class PlayingState extends GameObjectList {
     this.add(this.theCannon);
     this.add(this.blocks);
     this.add(this.texts);
+    this.add(this.tracingLine);
+    //this.add(this.particleSystem);
+  }
 
-    // add the ParticleSystem
-    this.add(this.particleSystem);
+  update(){
+    super.update();
+
+    if (this.theCannon.shootingFase == 3 && this.player.body.speed < 0.30){
+      this.reset();
+    }
   }
 }
