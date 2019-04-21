@@ -13,11 +13,9 @@ class GameObjectList extends GameObject {
     this.children = [];
     // create engine with its options
     this.engine = Matter.Engine.create({
-      render: {
         options: {
           wireframes:false,
         }
-      }
     });
 
     // create world with this engine and this list
