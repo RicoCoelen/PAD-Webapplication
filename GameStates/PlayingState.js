@@ -55,7 +55,7 @@ class PlayingState extends GameObjectList {
     super.update();
 
     if (this.theCannon.shootingFase == 3 && this.player.body.speed < 0.30){
-      this.reset();
+      gameEnvironment.gameStateManager.switchTo("Level");
     }
   }
 }
