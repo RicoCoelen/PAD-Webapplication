@@ -24,7 +24,7 @@ class Cannon extends GameObject {
     this.minDeg = -20;
     this.maxDeg = 90;
     this.currentDeg = -20;
-    this.speed = 1.3;
+    this.speed = 0.9;
     // give this object a body
   }
 
@@ -34,7 +34,7 @@ class Cannon extends GameObject {
     if (keyIsPressed && !this.cooldown) {
       this.shootingFase += 1;
       this.cooldown = true;
-      this.speed = -1.5;
+      this.speed = -0.9;
     } else if (this.cooldown && !keyIsPressed) {
       this.cooldown = false;
     }
@@ -46,7 +46,7 @@ class Cannon extends GameObject {
       this.currentDeg += this.speed;
 
       if (this.currentDeg <= this.minDeg || this.currentDeg >= this.maxDeg) {
-        this.speed *= -1;
+        this.speed *= -0.9;
       }
     }
 
@@ -54,7 +54,7 @@ class Cannon extends GameObject {
     else if (this.shootingFase == 1) {
       this.radius += this.speed;
       if (this.radius <= 0 || this.radius >= this.maxRadius) {
-        this.speed *= -1;
+        this.speed *= -0.9;
       }
     }
 

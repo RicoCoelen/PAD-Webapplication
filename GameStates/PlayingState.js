@@ -27,9 +27,9 @@ class PlayingState extends GameObjectList {
     this.tracingLine = new TracingLine(this.theCannon, this.player);
 
     // add static blocks
-    this.blocks.add(new StaticBox(500, height - 50, 50, 75)); // 1st
-    this.blocks.add(new StaticBox(700, height - 50, 50, 125)); // 2nd
-    this.blocks.add(new StaticBox(900, height - 50, 50, 175)); // 3th
+    this.blocks.add(new StaticBox(400, height - 50, 50, 75)); // 1st
+    this.blocks.add(new StaticBox(625, height - 50, 50, 125)); // 2nd
+    this.blocks.add(new StaticBox(850, height - 50, 50, 175)); // mogger
 
     // make static outer walls
     this.blocks.add(new StaticBox(0,600,2200,40)); // bottom wall
@@ -38,9 +38,9 @@ class PlayingState extends GameObjectList {
     this.blocks.add(new StaticBox(0,0,2200,20)); // top wall
 
     // add text objects
-    this.texts.add(new TextGameObject(575, height - 50, "Weinig Pijn"));
-    this.texts.add(new TextGameObject(750, height - 50, "Gemmidelde Pijn"));
-    this.texts.add(new TextGameObject(965, height - 50, "Veel Pijn"));
+    this.texts.add(new TextGameObject(480, height - 50, "Weinig Pijn"));
+    this.texts.add(new TextGameObject(690, height - 50, "Gemmidelde Pijn"));
+    this.texts.add(new TextGameObject(935, height - 50, "Veel Pijn"));
 
     // add the important stuff to gameobjectlist
     this.add(this.player);

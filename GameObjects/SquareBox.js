@@ -1,9 +1,6 @@
-/*
-this is the box class
-*/
-class Box extends GameObject {
+class SquareBox extends GameObject {
 
-  constructor(x, y, w, h,  options = null) {
+  constructor(x, y, w=40, h=40,  options = null) {
     // pass variables to upper class
     super(x, y);
 
@@ -34,7 +31,7 @@ class Box extends GameObject {
     translate(pos.x, pos.y);
     rotate(angle);
     rectMode(CENTER);
-    rect(0, 0, this.w, this.h);
+    image(assets.zwartVierkant, -assets.zwartVierkant.width/2, -assets.zwartVierkant.height/2);
     pop();
   }
 }

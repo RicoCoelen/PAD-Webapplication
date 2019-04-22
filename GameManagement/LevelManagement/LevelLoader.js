@@ -15,7 +15,7 @@ class LevelLoader {
 
       if (level[i][0] == 0) {
 
-        state.blocks.add(new Box(level[i][1], level[i][2]));
+        state.blocks.add(new SquareBox(level[i][1], level[i][2]));
       }
 
     }
