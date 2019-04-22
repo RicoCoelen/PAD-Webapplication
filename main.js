@@ -16,7 +16,7 @@ function setup() {
   gameEnvironment.gameStateManager.add(new TestState(), "TestState");
   gameEnvironment.gameStateManager.add(new Level(), "Level");
   // change scene to first in array.
-  gameEnvironment.gameStateManager.switchTo("PlayingState");
+  gameEnvironment.gameStateManager.switchTo("Level");
 }
 
 function draw() {

@@ -16,6 +16,11 @@ class LevelLoader {
       if (level[i][0] == 0) {
 
         state.blocks.add(new SquareBox(level[i][1], level[i][2]));
+
+      } else if (level[i][0] == 1) {
+
+        state.blocks.add(new Finish(level[i][1], level[i][2]));
+
       }
 
     }

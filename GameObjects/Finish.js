@@ -1,6 +1,6 @@
-class SquareBox extends GameObject {
+class Finish extends GameObject {
 
-  constructor(x, y, w=50, h=50,  options = null) {
+  constructor(x, y, w=80, h=80,  options = null) {
     // pass variables to upper class
     super(x, y);
 
@@ -15,6 +15,8 @@ class SquareBox extends GameObject {
 
     // add rigidbody physics to box
     this.body = Matter.Bodies.rectangle(this.x, this.y, this.w, this.h, this.options);
+    this.body.isStatic = true;
+
   }
 
   update() {
@@ -31,7 +33,8 @@ class SquareBox extends GameObject {
     translate(pos.x, pos.y);
     rotate(angle);
     rectMode(CENTER);
-    image(assets.zwartVierkant, -assets.zwartVierkant.width/2, -assets.zwartVierkant.height/2);
+    image(assets.finish, -assets.finish.width/2, -assets.finish.height/2);
     pop();
   }
+
 }

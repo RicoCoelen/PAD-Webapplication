@@ -17,11 +17,12 @@ class GameObjectList extends GameObject {
           wireframes:false,
         }
     });
-
     // create world with this engine and this list
     this.world = this.engine.world;
     // make the world child of this list
     this.world.parent = this;
+
+    Matter.World.add(this.world, Matter.MouseConstraint.create(this.engine));
   }
 
   update() {
@@ -65,4 +66,5 @@ class GameObjectList extends GameObject {
       this.children[i].handleInput(input);
     }
   }
+
 }
