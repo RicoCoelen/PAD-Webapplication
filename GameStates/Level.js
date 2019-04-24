@@ -4,8 +4,6 @@ class Level extends GameObjectList {
     // call base class
     super();
 
-
-
   }
 
   reset() {
@@ -24,9 +22,7 @@ class Level extends GameObjectList {
     this.blocks = new GameObjectList();
     this.texts = new GameObjectList();
 
-
-    //this.add(this.blocks);
-
+    // Load level
     this.levelLoader = new LevelLoader();
     this.levelLoader.loadLevel(5, this);
 
@@ -38,6 +34,6 @@ class Level extends GameObjectList {
 
   }
 
-  
+
 
 }
