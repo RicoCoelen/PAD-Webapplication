@@ -15,7 +15,7 @@ class Level extends GameObjectList {
 
     // create the player and the cannon
     this.player = new Player(200, height - 150, 20, {isStatic: false, restitution: 0.99});
-    this.theCannon = new Cannon(200, height - 150, 100, this.player);
+    this.theCannon = new Cannon(200, height - 150, 100, this.player, 0.9);
     this.tracingLine = new TracingLine(this.theCannon, this.player);
 
     // // add extra game object list to keep it ordered

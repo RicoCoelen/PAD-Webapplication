@@ -1,7 +1,7 @@
 class Cannon extends GameObject {
 
 
-  constructor(x, y, r = 100, child, options = null) {
+  constructor(x, y, r = 100, child, speed = 0.9, options = null) {
 
     super(x, y);
 
@@ -14,17 +14,15 @@ class Cannon extends GameObject {
     //determines what should be affected bij the user input
     this.shootingFase = 0;
 
-    //cirkel information
+    //circle information
     this.maxRadius = 100;
     this.radius = r;
-    //this.middleX = width / 2;
-    //this.middleY = height / 2;
 
     //set how far the angle is to shoot and how quick it moves
     this.minDeg = -20;
     this.maxDeg = 90;
     this.currentDeg = -20;
-    this.speed = 0.9;
+    this.speed = speed;
     // give this object a body
   }
 
@@ -34,7 +32,9 @@ class Cannon extends GameObject {
     if (keyIsPressed && !this.cooldown) {
       this.shootingFase += 1;
       this.cooldown = true;
-      this.speed = -0.9;
+      if (this.speed > 0) {
+        this.speed = -this.speed;
+      }
     } else if (this.cooldown && !keyIsPressed) {
       this.cooldown = false;
     }
@@ -46,15 +46,16 @@ class Cannon extends GameObject {
       this.currentDeg += this.speed;
 
       if (this.currentDeg <= this.minDeg || this.currentDeg >= this.maxDeg) {
-        this.speed *= -0.9;
+        this.speed = -this.speed;
       }
+
     }
 
     //fase 2 sets the shooting power
     else if (this.shootingFase == 1) {
       this.radius += this.speed;
       if (this.radius <= 0 || this.radius >= this.maxRadius) {
-        this.speed *= -0.9;
+        this.speed = -this.speed;
       }
     }
 
