@@ -32,10 +32,10 @@ class PlayingState extends GameObjectList {
     this.blocks.add(new StaticBox(850, height - 50, 50, 175)); // mogger
 
     // make static outer walls
-    this.blocks.add(new StaticBox(0,600,2200,40)); // bottom wall
-    this.blocks.add(new StaticBox(1075,0,40,1200)); // right wall
-    this.blocks.add(new StaticBox(0,0,40,1200)); // left wall
-    this.blocks.add(new StaticBox(0,0,2200,20)); // top wall
+    this.blocks.add(new Boundary(-40, height/2, 80, 2000));      // left
+    this.blocks.add(new Boundary(width+40, height/2, 80, 2000)); // right
+    this.blocks.add(new Boundary(width/2, -40, 2000, 80));       // top
+    this.blocks.add(new Boundary(width/2, height+40, 2000, 80)); // bottom
 
     // add text objects
     this.texts.add(new TextGameObject(480, height - 50, "Weinig Pijn"));

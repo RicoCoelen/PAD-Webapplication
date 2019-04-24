@@ -20,7 +20,7 @@ class Level extends GameObjectList {
     //this.add(this.blocks);
 
     this.levelLoader = new LevelLoader();
-    this.levelLoader.loadLevel(3, this);
+    this.levelLoader.loadLevel(5, this);
 
     // adds the player
     this.add(this.player);
