@@ -2,7 +2,7 @@ class VerStaticBox extends StaticBox {
 
   constructor(x, y) {
 
-    super(x, y, 10, 1000);
+    super(x, y, 30, 1000);
 
   }
 
