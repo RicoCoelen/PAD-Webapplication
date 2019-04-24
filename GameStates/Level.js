@@ -4,6 +4,14 @@ class Level extends GameObjectList {
     // call base class
     super();
 
+
+
+  }
+
+  reset() {
+
+    super.reset();
+
     //creates the particle system
     this.particleSystem = new ParticleSystem(createVector(250,250));
 
@@ -30,6 +38,6 @@ class Level extends GameObjectList {
 
   }
 
-
+  
 
 }

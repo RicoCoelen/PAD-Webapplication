@@ -4,10 +4,12 @@ This is the playing state class where the current game is setup
 class PlayingState extends GameObjectList {
 
   constructor() {
+
     // call base class
     super();
     //creates the particle system
     this.reset();
+
   }
 
   reset() {
@@ -49,13 +51,19 @@ class PlayingState extends GameObjectList {
     this.add(this.texts);
     this.add(this.tracingLine);
     //this.add(this.particleSystem);
+
   }
 
   update(){
+
     super.update();
 
     if (this.theCannon.shootingFase == 3 && this.player.body.speed < 0.30){
+
+      //this.reset();
       gameEnvironment.gameStateManager.switchTo("Level");
+
     }
+
   }
 }
