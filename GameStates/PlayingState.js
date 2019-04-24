@@ -27,9 +27,9 @@ class PlayingState extends GameObjectList {
     this.tracingLine = new TracingLine(this.theCannon, this.player);
 
     // add static blocks
-    this.blocks.add(new StaticBox(400, height - 50, 50, 75)); // 1st
-    this.blocks.add(new StaticBox(625, height - 50, 50, 125)); // 2nd
-    this.blocks.add(new StaticBox(850, height - 50, 50, 175)); // mogger
+    this.blocks.add(new StaticBox(400, height - 40, 25, 80));  // 1st
+    this.blocks.add(new StaticBox(625, height - 40, 25, 120)); // 2nd
+    this.blocks.add(new StaticBox(850, height - 40, 25, 160)); // 3th
 
     // make static outer walls
     this.blocks.add(new Boundary(-40, height/2, 80, 2000));      // left
