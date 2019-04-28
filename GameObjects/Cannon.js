@@ -72,9 +72,16 @@ class Cannon extends GameObject {
   draw() {
     fill(255);
     // draw circle with changing sizes
-    ellipse(this.position.x, this.position.y, this.radius * 2, this.radius * 2);
+    //ellipse(this.position.x, this.position.y, this.radius * 2, this.radius * 2)
     // draw line of circle
     line(this.position.x, this.position.y, (cos(this.angle) * this.radius) + this.position.x, -(sin(this.angle) * this.radius) + this.position.y);
+
+    push();
+    translate(this.position.x, this.position.y);
+    rotate(this.angle * -1);
+    rectMode(CENTER);
+    image(assets.cannon, -250, -40);
+    pop();
   }
 
 }

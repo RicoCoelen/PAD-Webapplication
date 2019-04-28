@@ -45,6 +45,8 @@ class PlayingState extends GameObjectList {
     this.texts.add(new TextGameObject(935, height - 50, "Veel Pijn"));
 
     // add the important stuff to gameobjectlist
+
+    this.add(new SpriteGameObject(0, 0, assets.background1, assets.background1.width, assets.background1.height));
     this.add(this.player);
     this.add(this.theCannon);
     this.add(this.blocks);
@@ -58,12 +60,16 @@ class PlayingState extends GameObjectList {
 
     super.update();
 
-    if (this.theCannon.shootingFase == 3 && this.player.body.speed < 0.30){
-
-      //this.reset();
-      gameEnvironment.gameStateManager.switchTo("Level");
-
+    if (this.theCannon.shootingFase == 3){
+      this.player.visible = true;
+    }
+    else {
+      this.player.visible = false;
     }
 
+    if (this.theCannon.shootingFase == 3 && this.player.body.speed < 0.30){
+      //this.reset();
+      gameEnvironment.gameStateManager.switchTo("Level");
+    }
   }
 }

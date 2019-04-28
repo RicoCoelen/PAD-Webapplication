@@ -27,11 +27,27 @@ class Level extends GameObjectList {
     this.levelLoader.loadLevel(5, this);
 
     // adds the player
+    this.add(new SpriteGameObject(0, 0, assets.background2, assets.background2.width, assets.background2.height));
     this.add(this.player);
     this.add(this.theCannon);
     this.add(this.tracingLine);
     this.add(this.blocks);
 
+  }
+
+  update () {
+    super.update();
+    if (this.theCannon.shootingFase == 3){
+      this.player.visible = true;
+    }
+    else {
+      this.player.visible = false;
+    }
+
+    if (this.theCannon.shootingFase == 3 && this.player.body.speed < 0.30){
+      //this.reset();
+      gameEnvironment.gameStateManager.switchTo("PlayingState");
+    }
   }
 
 

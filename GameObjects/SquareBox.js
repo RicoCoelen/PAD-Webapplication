@@ -31,7 +31,7 @@ class SquareBox extends GameObject {
     translate(pos.x, pos.y);
     rotate(angle);
     rectMode(CENTER);
-    image(assets.zwartVierkant, -assets.zwartVierkant.width/2, -assets.zwartVierkant.height/2);
+    image(assets.crate, -assets.crate.width/2, -assets.crate.height/2);
     pop();
   }
 }
