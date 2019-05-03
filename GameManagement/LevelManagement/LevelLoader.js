@@ -29,6 +29,10 @@ class LevelLoader {
 
         state.blocks.add(new VerStaticBox(level[i][1], level[i][2]));
 
+      } else if (level[i][0] == 4) {
+
+        state.blocks.add(new JumpPad(level[i][1], level[i][2]));
+
       }
 
     }
