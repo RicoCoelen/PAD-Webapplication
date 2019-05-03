@@ -30,6 +30,7 @@ class GameStateManager {
     //Checks if the given index is valid.
     if (name in this.children) {
       this.currentGameState = this.children[name];
+      this.currentGameState.reset();
     }
   }
 }

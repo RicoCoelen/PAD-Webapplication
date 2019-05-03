@@ -13,6 +13,7 @@ class Player extends GameObject {
     this.maxSpeed = 50;
     this.colliding = false;
     this.options = options;
+    this.visible = false;
 
     // add rigidbody physics to box
     this.body = Matter.Bodies.circle(this.x, this.y, this.r, this.options);
@@ -34,7 +35,10 @@ class Player extends GameObject {
     push();
     translate(pos.x, pos.y);
     rotate(angle);
-    circle(0, 0, this.r);
+    //circle(0, 0, this.r);
+    if(this.visible == true) {
+      image(assets.monkey, -assets.monkey.width/2 - 3, -assets.monkey.height/2 - 2);
+    }
     pop();
   }
 }

@@ -3,7 +3,7 @@ this is the SquareEffect class
 */
 class SquareEffect extends GameObject {
 
-  constructor(x, y, w, h, effect = null, options = null) {
+  constructor(x, y, w, h, effect = function (otherBody) {console.log("no effect function found");}, options = null) {
     // pass variables to upper class
     super(x, y);
 
@@ -29,6 +29,20 @@ class SquareEffect extends GameObject {
     //this.effect();
   }
 
+
+  collidesWith(otherBody) {
+
+    let collisions = Matter.Query.collides(this.body, [otherBody]);
+
+    if (collisions.length > 0) {
+
+      this.effect(otherBody);
+
+    }
+
+  }
+
+
   draw() {
     // get position and angle of rigidbody
     var pos = this.body.position;
@@ -46,7 +60,7 @@ class SquareEffect extends GameObject {
   setEffect(effect) {
 
     this.effect = effect;
-  
+
   }
 
 }
