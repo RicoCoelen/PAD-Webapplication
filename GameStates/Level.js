@@ -3,11 +3,9 @@ class Level extends GameObjectList {
   constructor() {
     // call base class
     super();
-
   }
 
   reset() {
-
     super.reset();
 
     //creates the particle system
@@ -18,6 +16,8 @@ class Level extends GameObjectList {
       isStatic: false,
       restitution: 0.99
     });
+
+    // add new object and add to object list
     this.theCannon = new Cannon(200, height - 150, 100, this.player, 0.9);
     this.tracingLine = new TracingLine(this.theCannon, this.player);
     this.jumpPad = new JumpPad(100, 100);
@@ -42,7 +42,7 @@ class Level extends GameObjectList {
 
   update() {
     super.update();
-    console.log(this.player.body.position);
+    //console.log(this.player.body.position);
 
     if (this.theCannon.shootingFase == 3) {
       this.player.visible = true;
@@ -62,9 +62,6 @@ class Level extends GameObjectList {
     //
     //   }
     // }
-
-
-
   }
 
 }
