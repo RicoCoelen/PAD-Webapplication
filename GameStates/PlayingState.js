@@ -21,6 +21,9 @@ class PlayingState extends GameObjectList {
     this.blocks = new GameObjectList();
     this.texts = new GameObjectList();
 
+    //Testing
+    this.water = new Water(512, height / 2, 175, height);
+
     //this.particleSystem = new ParticleSystem(createVector(500,500));
 
     // create the player and the cannon/line
@@ -52,6 +55,7 @@ class PlayingState extends GameObjectList {
     this.add(this.blocks);
     this.add(this.texts);
     this.add(this.tracingLine);
+    this.add(this.water);
     //this.add(this.particleSystem);
 
   }
@@ -71,5 +75,35 @@ class PlayingState extends GameObjectList {
       //this.reset();
       gameEnvironment.gameStateManager.switchTo("Level");
     }
+
+    // gets the array with collisions form library
+    let collisions = Matter.Query.collides(this.water.body, [this.player.body]);
+    let lastCollissions = [];
+
+    //doesn't work
+    //use this to distinguish arrays and objects in this.children
+    //TO DO: combine with current collision check between water and player
+    for(let i = 0; i < this.children.lenth; i++){
+      if(Array.isArray(this.children[i])){
+
+      }
+    }
+
+    if(lastCollissions.length >= 1){
+      for(let i = 0; i < lastCollisions.length; i++){
+        lastCollisions[i].bodyB.frictionAir = 0.01;
+      }
+    }
+
+    // changes the airfriction when in water
+    if(collisions.length >= 1){
+      for(let i = 0; i < collisions.length; i++){
+        collisions[i].bodyB.frictionAir = 0.04;
+      }
+    }
+
+
+
+    lastCollissions = collisions;
   }
 }
