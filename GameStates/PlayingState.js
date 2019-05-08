@@ -78,7 +78,7 @@ class PlayingState extends GameObjectList {
     }
 
     // gets the array with collisions form library
-    var collisions = Matter.Query.collides(this.water.body, [this.player.body]);
+    this.water.collisions = Matter.Query.collides(this.water.body, [this.player.body]);
 
     //doesn't work
     //use this to distinguish arrays and objects in this.children
@@ -87,20 +87,5 @@ class PlayingState extends GameObjectList {
       if(Array.isArray(this.children[i])){
       }
     }
-
-    if(this.lastCollissions.length >= 1){
-      for(let i = 0; i < this.lastCollissions.length; i++){
-        this.lastCollissions[i].bodyB.frictionAir = 0.01;
-      }
-    }
-
-    // changes the airfriction when in water
-    if(collisions.length >= 1){
-      for(let i = 0; i < collisions.length; i++){
-        collisions[i].bodyB.frictionAir = 0.04;
-      }
-    }
-
-    this.lastCollissions = collisions;
   }
 }
