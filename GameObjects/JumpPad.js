@@ -2,11 +2,11 @@ class JumpPad extends SquareEffect {
 
   constructor(x, y) {
 
-    super(x, y, 100, 25);
+    super(x, y, 100, 14);
 
     this.timer = 20;
-    this.body.density = 10;
-    this.restitution = 0;
+    this.body.density = 0;
+    this.body.friction = 1;
 
     this.effect = function(otherBody) {
       //Matter.Body.applyForce(otherBody, this.body.position, {x: 0, y: -0.095});

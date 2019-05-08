@@ -20,17 +20,22 @@ class LevelLoader {
 
       if (level[i][0] == 0) {
 
-        state.blocks.add(new SquareBox(level[i][1], level[i][2]));
+        state.blocks.add(new SquareBox(level[i][1], level[i][2], 0, 50, 50));
 
       } else if (level[i][0] == 1) {
 
         state.blocks.add(new Finish(level[i][1], level[i][2]));
+
+      } else if (level[i][0] == 2) {
+
+        state.blocks.add(new SquareBox(level[i][1], level[i][2], 1, 167, 25))
 
       } else if (level[i][0] == 4) {
 
         state.blocks.add(new JumpPad(level[i][1], level[i][2]));
 
       }
+
 
     }
   }
