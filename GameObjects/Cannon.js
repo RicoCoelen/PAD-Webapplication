@@ -29,8 +29,10 @@ class Cannon extends GameObject {
   update() {
 
     //checks for input and moves to next fase when needed
-    if (keyIsPressed && !this.cooldown && this.shootingFase < 3) {
-      this.shootingFase += 1;
+    if (keyIsPressed && !this.cooldown) {
+      if (this.shootingFase < 3) {
+        this.shootingFase += 1;
+      }
       this.cooldown = true;
       if (this.speed > 0) {
         this.speed = -this.speed;
