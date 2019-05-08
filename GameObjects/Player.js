@@ -15,6 +15,8 @@ class Player extends GameObject {
     this.options = options;
     this.visible = false;
 
+    this.direction = this.velocity.y/this.velocity.x;
+
     // add rigidbody physics to box
     this.body = Matter.Bodies.circle(this.x, this.y, this.r, this.options);
 

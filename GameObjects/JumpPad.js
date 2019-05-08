@@ -4,22 +4,37 @@ class JumpPad extends SquareEffect {
 
     super(x, y, 100, 25);
 
-    this.effect = function (otherBody) {
-      console.log(" yeeta;df")
-console.log(otherBody);
-      Matter.Body.applyForce(otherBody, this.body.position, {x: 0, y: -0.095});
-      otherBody.velocity.x = 0;
-      otherBody.positionPrev.x = otherBody.position.x - 0;
-      assets.jumpsound.play();
+    this.timer = 20;
+    this.body.density = 10;
+    this.restitution = 0;
 
+    this.effect = function(otherBody) {
+      //Matter.Body.applyForce(otherBody, this.body.position, {x: 0, y: -0.095});
+      //otherBody.velocity.x = 0;
+      //otherBody.positionPrev.x = otherBody.position.x - 0;
+
+      if (this.timer >= 20) {
+        assets.jumpsound.play();
+        Matter.Body.setVelocity(otherBody, {
+          x: 20 * ((Math.cos((this.body.angle / Math.PI) * 180 - 90)) % 360),
+          y: 20 * ((-Math.sin((this.body.angle / Math.PI) * 180 - 90)) % 360)
+        });
+      }
+      this.timer = 0;
     };
 
   }
 
-  update(){
+  update() {
 
+    //console.log(((this.body.angle/Math.PI)* 180) % 360);
+    console.log((Math.cos((this.body.angle / Math.PI) * 180 - 90)) % 360);
+    console.log((-Math.sin((this.body.angle / Math.PI) * 180 - 90)) % 360);
     super.update();
 
+    if (this.timer < 20) {
+      this.timer += 1;
+    }
   }
 
   draw() {
@@ -32,7 +47,7 @@ console.log(otherBody);
     translate(pos.x, pos.y);
     rotate(angle);
     rectMode(CENTER);
-    image(assets.jumppad, -assets.jumppad.width/2, -assets.jumppad.height/2);
+    image(assets.jumppad, -assets.jumppad.width / 2, -assets.jumppad.height / 2);
     pop();
   }
 
