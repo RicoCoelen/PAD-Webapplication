@@ -4,11 +4,12 @@ This is the playing state class where the current game is setup
 class PlayingState extends GameObjectList {
 
   constructor() {
-
     // call base class
     super();
     //creates the particle system
     this.reset();
+
+    this.lastCollissions = [];
 
   }
 
@@ -77,21 +78,19 @@ class PlayingState extends GameObjectList {
     }
 
     // gets the array with collisions form library
-    let collisions = Matter.Query.collides(this.water.body, [this.player.body]);
-    let lastCollissions = [];
+    var collisions = Matter.Query.collides(this.water.body, [this.player.body]);
 
     //doesn't work
     //use this to distinguish arrays and objects in this.children
     //TO DO: combine with current collision check between water and player
     for(let i = 0; i < this.children.lenth; i++){
       if(Array.isArray(this.children[i])){
-
       }
     }
 
-    if(lastCollissions.length >= 1){
-      for(let i = 0; i < lastCollisions.length; i++){
-        lastCollisions[i].bodyB.frictionAir = 0.01;
+    if(this.lastCollissions.length >= 1){
+      for(let i = 0; i < this.lastCollissions.length; i++){
+        this.lastCollissions[i].bodyB.frictionAir = 0.01;
       }
     }
 
@@ -102,8 +101,6 @@ class PlayingState extends GameObjectList {
       }
     }
 
-
-
-    lastCollissions = collisions;
+    this.lastCollissions = collisions;
   }
 }
