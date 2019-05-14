@@ -26,10 +26,6 @@ class JumpPad extends SquareEffect {
   }
 
   update() {
-
-    //console.log(((this.body.angle/Math.PI)* 180) % 360);
-    console.log((Math.cos((this.body.angle / Math.PI) * 180 - 90)) % 360);
-    console.log((-Math.sin((this.body.angle / Math.PI) * 180 - 90)) % 360);
     super.update();
 
     if (this.timer < 20) {
