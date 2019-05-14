@@ -1,8 +1,8 @@
 class JumpPad extends SquareEffect {
 
-  constructor(x, y) {
+  constructor(x, y, otherBody = null) {
 
-    super(x, y, 100, 25);
+    super(x, y, 100, 25, otherBody);
 
     this.timer = 20;
     this.body.density = 10;

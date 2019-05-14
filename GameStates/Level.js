@@ -20,7 +20,7 @@ class Level extends GameObjectList {
     });
     this.theCannon = new Cannon(200, height - 150, 100, this.player, 0.9);
     this.tracingLine = new TracingLine(this.theCannon, this.player);
-    this.jumpPad = new JumpPad(100, 100);
+    //this.jumpPad = new JumpPad(100, 100);
 
     // // add extra game object list to keep it ordered
     this.blocks = new GameObjectList();
@@ -28,12 +28,12 @@ class Level extends GameObjectList {
 
     // Load level
     this.levelLoader = new LevelLoader();
-    this.levelLoader.loadLevel(5, this);
+    this.levelLoader.loadLevel(6, this, this.player);
 
     // adds the player
     this.add(new SpriteGameObject(0, 0, assets.background2, assets.background2.width, assets.background2.height));
     this.add(this.player);
-    this.add(this.jumpPad);
+    //this.add(this.jumpPad);
     this.add(this.theCannon);
     this.add(this.tracingLine);
     this.add(this.blocks);
@@ -55,7 +55,7 @@ class Level extends GameObjectList {
       gameEnvironment.gameStateManager.switchTo("PlayingState");
     }
 
-    this.jumpPad.collidesWith(this.player.body);
+    //this.jumpPad.collidesWith(this.player.body);
 
     // for (let i = 0; i < this.children.length; i++) {
     //   if (Array.isArray(this.children[i])) {
