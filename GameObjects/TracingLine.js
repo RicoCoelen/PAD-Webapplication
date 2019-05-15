@@ -1,9 +1,10 @@
 class TracingLine extends GameObject{
-  constructor(cannon, player){
+  constructor(cannon, player, dotsAmount = 30){
     super(0, 0, 0, 0);
     this.cannon = cannon;
     this.player = player;
-    this.player.gravity = 0.4 ;
+    this.player.gravity = 0.4;
+    this.dotsAmount = dotsAmount;
   }
 
   update(){
@@ -18,7 +19,7 @@ class TracingLine extends GameObject{
 
     this.position.x = this.cannon.position.x;
 
-    for(let i = 1; i < 30; i++){
+    for(let i = 1; i < this.dotsAmount; i++){
 
       for(let j = 0; j < 1 ; j += 0.1){
         this.velocity.y += (this.player.gravity / 2 - 0.05) * 0.1;

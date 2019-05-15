@@ -16,7 +16,7 @@ class SpeedPad extends GameObject{
     this.body = Matter.Bodies.rectangle(this.x, this.y, this.w, this.h, this.options);
 
     // if flipped objects will be sent to the left instead
-    this.flipped = false;
+    this.flipped = true;
 
     this.collisions = [];
   }
@@ -24,18 +24,22 @@ class SpeedPad extends GameObject{
 
   update(){
     super.update();
+
     this.vertices = this.body.vertices;
-
-
 
     if(this.collisions.length >= 1){
 
       for(let i = 0; i < this.collisions.length; i++){
 
-          if(this.vertices[0].x < this.collisions[i].bodyB.position.x && this.vertices[1].x > this.collisions[i].bodyB.position.x){
+        if(this.vertices[0].x < this.collisions[i].bodyB.position.x && this.vertices[1].x > this.collisions[i].bodyB.position.x){
 
-            if(0 < (this.vertices[0].y + this.vertices[1].y + this.vertices[2].y + this.vertices[3].y - this.collisions[i].bodyB.position.y * 4) / 4){
-
+          if(0 < (this.vertices[0].y + this.vertices[1].y + this.vertices[2].y + this.vertices[3].y - this.collisions[i].bodyB.position.y * 4) / 4){
+            if(this.flipped){
+              Matter.Body.setVelocity(this.collisions[i].bodyB, {
+                x: this.collisions[i].bodyB.velocity.x - (this.vertices[1].x - this.vertices[0].x) / this.w,
+                y: this.collisions[i].bodyB.velocity.y - (this.vertices[0].y - this.vertices[1].y) / this.w
+              });
+            }else{
               Matter.Body.setVelocity(this.collisions[i].bodyB, {
                 x: this.collisions[i].bodyB.velocity.x - (this.vertices[0].x - this.vertices[1].x) / this.w,
                 y: this.collisions[i].bodyB.velocity.y - (this.vertices[0].y - this.vertices[1].y) / this.w
@@ -45,6 +49,7 @@ class SpeedPad extends GameObject{
         }
       }
     }
+  }
 
 
   draw(){

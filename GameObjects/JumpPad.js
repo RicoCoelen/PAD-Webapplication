@@ -1,40 +1,53 @@
-class JumpPad extends SquareEffect {
+class JumpPad extends SpriteGameObject {
 
-  constructor(x, y) {
+  constructor(x, y, w, h, sprite = assets.jumppad, options = null){
+    // pass variables to upper class
+    super(x, y, sprite, w, h);
 
-    super(x, y, 100, 25);
+    // save variables to object
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.sprite = sprite;
 
-    this.timer = 20;
-    this.body.density = 10;
-    this.restitution = 0;
+    // add matter.js options for physics
+    this.options = options;
 
-    this.effect = function(otherBody) {
-      //Matter.Body.applyForce(otherBody, this.body.position, {x: 0, y: -0.095});
-      //otherBody.velocity.x = 0;
-      //otherBody.positionPrev.x = otherBody.position.x - 0;
+    // add rigidbody physics to box
+    this.body = Matter.Bodies.rectangle(this.x, this.y, this.w, this.h, this.options);
+    this.body.isStatic = true;
 
-      if (this.timer >= 20) {
-        assets.jumpsound.play();
-        Matter.Body.setVelocity(otherBody, {
-          x: 20 * ((Math.cos((this.body.angle / Math.PI) * 180 - 90)) % 360),
-          y: 20 * ((-Math.sin((this.body.angle / Math.PI) * 180 - 90)) % 360)
-        });
-      }
-      this.timer = 0;
-    };
-
+    this.collisions = [];
   }
 
-  update() {
+
+  update(){
     super.update();
 
-    if (this.timer < 20) {
-      this.timer += 1;
+    this.vertices = this.body.vertices;
+
+    if(this.collisions.length >= 1){
+
+      for(let i = 0; i < this.collisions.length; i++){
+
+        if(this.vertices[0].x < this.collisions[i].bodyB.position.x && this.vertices[1].x > this.collisions[i].bodyB.position.x){
+
+          Matter.Body.setVelocity(this.collisions[i].bodyB, {
+            x: 5 * -((this.vertices[0].y - this.vertices[1].y) / this.w),
+            y: 5 * ((this.vertices[0].x - this.vertices[1].x) / this.w)
+          });
+        }
+
+      }
+
     }
+
   }
 
-  draw() {
-    // get position and angle of rigidbody
+
+  draw(){
+    //get body position
     var pos = this.body.position;
     var angle = this.body.angle;
 
@@ -43,8 +56,7 @@ class JumpPad extends SquareEffect {
     translate(pos.x, pos.y);
     rotate(angle);
     rectMode(CENTER);
-    image(assets.jumppad, -assets.jumppad.width / 2, -assets.jumppad.height / 2);
+    image(this.sprite, 0 - this.w / 2, 0 - this.h / 2, this.w, this.h);
     pop();
   }
-
 }

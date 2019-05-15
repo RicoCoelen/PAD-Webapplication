@@ -26,8 +26,6 @@ class PlayingState extends GameObjectList {
     this.speedPad = new SpeedPad(624, height * 7 / 8, 175, height / 8);
     this.popupMenu = new PopupMenu(100, 100, width - 200, height - 200);
 
-    //this.particleSystem = new ParticleSystem(createVector(500,500));
-
     // create the player and the cannon/line
     this.player = new Player(200, height - 150, 20, {isStatic: false, restitution: 0.99});
     this.theCannon = new Cannon(200, height - 150, 100, this.player, 0.2);
@@ -35,8 +33,6 @@ class PlayingState extends GameObjectList {
 
     // add static blocks
     this.blocks.add(new StaticBox(200, height - 40, 25, 80));  // 1st
-    //this.blocks.add(new StaticBox(625, height - 40, 25, 120)); // 2nd
-    //this.blocks.add(new StaticBox(850, height - 40, 25, 160)); // 3th
 
     // make static outer walls
     this.blocks.add(new Boundary(-40, height/2, 80, 2000));      // left

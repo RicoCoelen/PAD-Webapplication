@@ -8,6 +8,9 @@ class AssetLoader {
     this.monkey = loadImage('assets/monkey.png');
     this.finish = loadImage('assets/finish.png');
     this.jumppad = loadImage('assets/Jumppad.png')
+    this.dirt = loadImage('assets/dirtblock.png');
+    this.plank = loadImage('assets/plank.png');
+
     this.jumpsound = loadSound('assets/JumpSound.mp3');
   }
 

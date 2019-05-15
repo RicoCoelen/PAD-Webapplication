@@ -19,7 +19,8 @@ class Player extends GameObject {
 
     // add rigidbody physics to box
     this.body = Matter.Bodies.circle(this.x, this.y, this.r, this.options);
-
+    this.body.friction = 0;
+    
     // make static for first seconds
     Matter.Body.setStatic(this.body, true);
   }
