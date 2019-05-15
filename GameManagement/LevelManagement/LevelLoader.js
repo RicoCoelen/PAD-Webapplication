@@ -20,7 +20,7 @@ class LevelLoader {
 
       if (level[i][0] == 0) {
 
-        state.blocks.add(new SquareBox(level[i][1], level[i][2], 0, 50, 50));
+        state.blocks.add(new SquareBox(level[i][1], level[i][2], assets.crate, 50, 50));
 
       } else if (level[i][0] == 1) {
 
@@ -28,15 +28,17 @@ class LevelLoader {
 
       } else if (level[i][0] == 2) {
 
-        state.blocks.add(new SquareBox(level[i][1], level[i][2], 1, 167, 25))
+        state.blocks.add(new SquareBox(level[i][1], level[i][2], assets.plank, 167, 25));
 
-      } else if (level[i][0] == 4) {
+      } else if (level[i][0] == 3) {
 
         state.blocks.add(new JumpPad(level[i][1], level[i][2]));
 
+      } else if (level[i][0] == 4) {
+
+        state.blocks.add(new SquareBox(level[i][1], level[i][2], assets.dirt, 50, 50));
+
       }
-
-
     }
   }
 }

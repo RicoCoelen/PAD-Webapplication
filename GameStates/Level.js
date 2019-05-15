@@ -33,6 +33,7 @@ class Level extends GameObjectList {
     // adds the player
     this.add(new SpriteGameObject(0, 0, assets.background2, assets.background2.width, assets.background2.height));
     this.add(this.player);
+
     this.add(this.jumpPad);
     this.add(this.theCannon);
     this.add(this.tracingLine);
@@ -42,7 +43,7 @@ class Level extends GameObjectList {
 
   update() {
     super.update();
-    console.log(this.player.body.position);
+    //console.log(this.player.body.position);
 
     if (this.theCannon.shootingFase == 3) {
       this.player.visible = true;
