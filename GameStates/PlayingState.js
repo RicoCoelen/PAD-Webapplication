@@ -4,11 +4,12 @@ This is the playing state class where the current game is setup
 class PlayingState extends GameObjectList {
 
   constructor() {
-
     // call base class
     super();
     //creates the particle system
     this.reset();
+
+    this.lastCollissions = [];
 
   }
 
@@ -20,6 +21,9 @@ class PlayingState extends GameObjectList {
     // add extra game object list to keep it ordered
     this.blocks = new GameObjectList();
     this.texts = new GameObjectList();
+
+    //Testing
+    this.water = new Water(512, height / 2, 175, height);
 
     //this.particleSystem = new ParticleSystem(createVector(500,500));
 
@@ -52,6 +56,7 @@ class PlayingState extends GameObjectList {
     this.add(this.blocks);
     this.add(this.texts);
     this.add(this.tracingLine);
+    this.add(this.water);
     //this.add(this.particleSystem);
 
   }
@@ -70,6 +75,17 @@ class PlayingState extends GameObjectList {
     if (this.theCannon.shootingFase == 3 && this.player.body.speed < 0.30){
       //this.reset();
       gameEnvironment.gameStateManager.switchTo("Level");
+    }
+
+    // gets the array with collisions form library
+    this.water.collisions = Matter.Query.collides(this.water.body, [this.player.body]);
+
+    //doesn't work
+    //use this to distinguish arrays and objects in this.children
+    //TO DO: combine with current collision check between water and player
+    for(let i = 0; i < this.children.lenth; i++){
+      if(Array.isArray(this.children[i])){
+      }
     }
   }
 }

@@ -1,8 +1,8 @@
 class JumpPad extends SquareEffect {
 
-  constructor(x, y) {
+  constructor(x, y, otherBody = null) {
 
-    super(x, y, 100, 14);
+    super(x, y, 100, 25, otherBody);
 
     this.timer = 20;
     this.body.density = 0;
@@ -26,9 +26,7 @@ class JumpPad extends SquareEffect {
   }
 
   update() {
-    //console.log(((this.body.angle/Math.PI)* 180) % 360);
-    //console.log((Math.cos((this.body.angle / Math.PI) * 180 - 90)) % 360);
-    //console.log((-Math.sin((this.body.angle / Math.PI) * 180 - 90)) % 360);
+    
     super.update();
 
     if (this.timer < 20) {

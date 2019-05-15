@@ -34,22 +34,9 @@ class SquareBox extends GameObject {
     rotate(angle);
     rectMode(CENTER);
 
-    if (this.texture == 0) {
+    image(this.texture, -assets.crate.width / 2, -assets.crate.height / 2);
+    this.body.friction = 1;
 
-      image(assets.crate, -assets.crate.width / 2, -assets.crate.height / 2);
-      this.body.friction = 1;
-
-    } else if (this.texture == 1) {
-
-      image(assets.plank, -assets.plank.width / 2, -assets.plank.height / 2);
-      this.body.friction = 1;
-
-    } else if (this.texture == 2) {
-
-      image(assets.dirt, -assets.dirt.width / 2, -assets.dirt.height / 2);
-      this.body.friction = 1;
-
-    }
 
     pop();
   }

@@ -7,24 +7,30 @@ class LevelLoader {
   }
 
 
-  loadLevel(index, state) {
+  loadLevel(index, state, player) {
 
     let level = this.levels.getLevel(index);
 
-    state.blocks.add(new Boundary(-40, height / 2, 80, 2000));
-    state.blocks.add(new Boundary(width + 40, height / 2, 80, 2000));
-    state.blocks.add(new Boundary(width / 2, -40, 2000, 80));
-    state.blocks.add(new Boundary(width / 2, height + 40, 2000, 80));
+    state.blocks.add(new Boundary(-100, height / 2, 200, 2000));
+    state.blocks.add(new Boundary(width + 100, height / 2, 200, 2000));
+    state.blocks.add(new Boundary(width / 2, -100, 2000, 200));
+    state.blocks.add(new Boundary(width / 2, height + 100, 2000, 200));
 
     for (let i = 0; i < level.length; i++) {
 
       if (level[i][0] == 0) {
 
-        state.blocks.add(new SquareBox(level[i][1], level[i][2], assets.crate, 50, 50));
+        let squareBox = new SquareBox(level[i][1], level[i][2], assets.crate);
+        Matter.Body.setAngle(squareBox.body, level[i][5]);
+
+        state.blocks.add(squareBox);
 
       } else if (level[i][0] == 1) {
 
-        state.blocks.add(new Finish(level[i][1], level[i][2]));
+        let finish = new Finish(level[i][1], level[i][2]);
+        Matter.Body.setAngle(finish.body, level[i][5]);
+
+        state.blocks.add(finish);
 
       } else if (level[i][0] == 2) {
 
@@ -32,7 +38,10 @@ class LevelLoader {
 
       } else if (level[i][0] == 3) {
 
-        state.blocks.add(new JumpPad(level[i][1], level[i][2]));
+        let jumpPad = new JumpPad(level[i][1], level[i][2], player.body);
+        Matter.Body.setAngle(jumpPad.body, level[i][5]);
+
+        state.blocks.add(jumpPad);
 
       } else if (level[i][0] == 4) {
 
