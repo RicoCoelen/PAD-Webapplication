@@ -9,16 +9,13 @@ class PlayingState extends GameObjectList {
     //creates the particle system
     this.reset();
 
-    //this.lastCollissions = [];
-
-    this.result = 0;
-
   }
 
   reset() {
 
     super.reset();
 
+    this.result = -1;
 
     // add extra game object list to keep it ordered
     this.blocks = new GameObjectList();
@@ -26,14 +23,15 @@ class PlayingState extends GameObjectList {
 
     //Testing
     this.water = new Water(512, height / 2, 175, height);
-    this.speedPad = new SpeedPad(624, height * 7 / 8, 175, height / 8)
+    this.speedPad = new SpeedPad(624, height * 7 / 8, 175, height / 8);
+    this.popupMenu = new PopupMenu(100, 100, width - 200, height - 200);
 
     //this.particleSystem = new ParticleSystem(createVector(500,500));
 
     // create the player and the cannon/line
     this.player = new Player(200, height - 150, 20, {isStatic: false, restitution: 0.99});
     this.theCannon = new Cannon(200, height - 150, 100, this.player, 0.2);
-    this.tracingLine = new TracingLine(this.theCannon, this.player);
+    this.tracingLine = new TracingLine(this.theCannon, this.player, 50);
 
     // add static blocks
     this.blocks.add(new StaticBox(200, height - 40, 25, 80));  // 1st
@@ -51,6 +49,10 @@ class PlayingState extends GameObjectList {
     this.texts.add(new TextGameObject((220 + width - 100) / 2, height - 50, "Gemmidelde Pijn"));
     this.texts.add(new TextGameObject(width - 100, height - 50, "Erg Veel Pijn"));
 
+    for(let i = 1; i <= 10 ; i++){
+      this.texts.add(new TextGameObject(150 + (width - 170) / 10 * i, height - 20, i));
+    }
+
     // add the important stuff to gameobjectlist
 
     this.add(new SpriteGameObject(0, 0, assets.background1, assets.background1.width, assets.background1.height));
@@ -59,9 +61,7 @@ class PlayingState extends GameObjectList {
     this.add(this.blocks);
     this.add(this.texts);
     this.add(this.tracingLine);
-    //this.add(this.water);
-    //this.add(this.speedPad);
-    //this.add(this.particleSystem);
+    this.add(this.popupMenu);
 
   }
 
@@ -77,9 +77,10 @@ class PlayingState extends GameObjectList {
     }
 
 
-    if (this.player.body.position.y >= 580){
-      this.result = (this.player.body.position.x - 225) / (width - 245) * 10;
-      //gameEnvironment.gameStateManager.switchTo("Level");
+    if (this.player.body.position.y >= 580 && this.player.body.position.x >= 225 && this.player.body.position.x <= width){
+      this.popupMenu.result = round((this.player.body.position.x - 150) / (width - 170) * 1000, 2) / 100;
+      this.popupMenu.visible = true;
+      Matter.Body.setVelocity(this.player.body, {x: 0, y:0});
     }
 
     // gets the array with collisions form library
