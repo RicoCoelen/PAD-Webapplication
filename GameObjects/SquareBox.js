@@ -32,11 +32,12 @@ class SquareBox extends GameObject {
     push();
     translate(pos.x, pos.y);
     rotate(angle);
+
     rectMode(CENTER);
+    imageMode(CENTER);
 
-    image(this.texture, -assets.crate.width / 2, -assets.crate.height / 2);
+    image(this.texture, 0, 0);
     this.body.friction = 1;
-
 
     pop();
   }

@@ -20,9 +20,10 @@ class LevelLoader {
 
       if (level[i][0] == 0) {
 
-        let squareBox = new SquareBox(level[i][1], level[i][2], assets.crate);
+        let texture = assets.crate;
+        let squareBox = new SquareBox(level[i][1], level[i][2], texture, texture.width, texture.height);
         Matter.Body.setAngle(squareBox.body, level[i][5]);
-
+        squareBox.body.friction = 0.6;
         state.blocks.add(squareBox);
 
       } else if (level[i][0] == 1) {
@@ -34,7 +35,11 @@ class LevelLoader {
 
       } else if (level[i][0] == 2) {
 
-        state.blocks.add(new SquareBox(level[i][1], level[i][2], assets.plank, 167, 25));
+        let texture = assets.plank;
+        let squareBox = new SquareBox(level[i][1], level[i][2], texture, texture.width, texture.height);
+        Matter.Body.setAngle(squareBox.body, level[i][5]);
+        squareBox.body.friction = 0.6
+        state.blocks.add(squareBox);
 
       } else if (level[i][0] == 3) {
 
@@ -45,7 +50,11 @@ class LevelLoader {
 
       } else if (level[i][0] == 4) {
 
-        state.blocks.add(new SquareBox(level[i][1], level[i][2], assets.dirt, 50, 50));
+        let texture = assets.dirt;
+        let squareBox = new SquareBox(level[i][1], level[i][2], texture, texture.width, texture.height, {friction: 0.5});
+        squareBox.body.friction = 0.9;
+        Matter.Body.setAngle(squareBox.body, level[i][5]);
+        state.blocks.add(squareBox);
 
       }
     }
