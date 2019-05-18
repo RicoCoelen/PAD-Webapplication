@@ -19,11 +19,8 @@ class SquareEffect extends GameObject {
     // add the function of the squarebox
     this.effect = effect;
 
-    // add matter.js options for physics
-    this.options = options;
-
     // add rigidbody physics to box
-    this.body = Matter.Bodies.rectangle(this.x, this.y, this.w, this.h, this.options);
+    this.body = Matter.Bodies.rectangle(this.x, this.y, this.w, this.h, options);
   }
 
   update() {

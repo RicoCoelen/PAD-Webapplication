@@ -1,8 +1,15 @@
+/*
+This is the playing state class where the current game is setup
+*/
 class PlayingState extends GameObjectList {
 
   constructor() {
     // call base class
     super();
+    //creates the particle system
+    this.reset();
+
+    //this.lastCollissions = [];
 
   }
 

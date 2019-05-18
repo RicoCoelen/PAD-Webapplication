@@ -1,21 +1,22 @@
-class Finish extends GameObject {
+class Finish extends SquareEffect {
 
-  constructor(x, y, w=80, h=80,  options = null) {
+  constructor(x, y, w, h, otherBody = null) {
     // pass variables to upper class
-    super(x, y);
+    super(x, y, w, h, otherBody);
 
     // save variables to object
     this.x = x;
     this.y = y;
-    this.w = w;
-    this.h = h;
 
-    // add matter.js options for physics
-    this.options = options;
-
-    // add rigidbody physics to box
-    this.body = Matter.Bodies.rectangle(this.x, this.y, this.w, this.h, this.options);
     this.body.isStatic = true;
+    this.body.collisionFilter.category = 0;
+    // checks collision
+    this.effect = function(otherBody) {
+
+      gameEnvironment.gameStateManager.switchTo("GameEnd");
+      assets.winsound.play();
+
+    }
 
   }
 
@@ -33,7 +34,7 @@ class Finish extends GameObject {
     translate(pos.x, pos.y);
     rotate(angle);
     rectMode(CENTER);
-    image(assets.finish, -assets.finish.width/2, -assets.finish.height/2);
+    image(assets.finish, -assets.finish.width / 2, -assets.finish.height / 2);
     pop();
   }
 

@@ -3,16 +3,18 @@ class Level extends GameObjectList {
   constructor() {
     // call base class
     super();
+
   }
 
   reset() {
+    
     super.reset();
 
     //creates the particle system
     this.particleSystem = new ParticleSystem(createVector(250, 250));
 
     // create the player and the cannon
-    this.player = new Player(200, height - 150, 20, {
+    this.player = new Player(200, height - 150, assets.monkey.width/2, {
       isStatic: false,
       restitution: 0.99
     });

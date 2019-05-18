@@ -13,10 +13,10 @@ function setup() {
   gameEnvironment = new GameEnvironment();
   // add new states in the state list.
   gameEnvironment.gameStateManager.add(new PlayingState(), "PlayingState");
-  gameEnvironment.gameStateManager.add(new TestState(), "TestState");
+  gameEnvironment.gameStateManager.add(new GameEnd(), "GameEnd");
   gameEnvironment.gameStateManager.add(new Level(), "Level");
   // change scene to first in array.
-  gameEnvironment.gameStateManager.switchTo("PlayingState");
+  gameEnvironment.gameStateManager.switchTo("Level");
 }
 
 function draw() {
