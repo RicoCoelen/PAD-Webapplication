@@ -3,7 +3,7 @@ this is the SquareEffect class
 */
 class SquareEffect extends GameObject {
 
-  constructor(x, y, w, h, effect = function (otherBody) {console.log("no effect function found");}, options = null) {
+  constructor(x, y, w, h, otherBody = null, effect = function (otherBody) {console.log("no effect function found");}, options = null) {
     // pass variables to upper class
     super(x, y);
 
@@ -13,18 +13,21 @@ class SquareEffect extends GameObject {
     this.w = w;
     this.h = h;
 
+    // Save the object that triggers effect when it collides
+    this.otherBody = otherBody;
+
     // add the function of the squarebox
     this.effect = effect;
 
-    // add matter.js options for physics
-    this.options = options;
-
     // add rigidbody physics to box
-    this.body = Matter.Bodies.rectangle(this.x, this.y, this.w, this.h, this.options);
+    this.body = Matter.Bodies.rectangle(this.x, this.y, this.w, this.h, options);
   }
 
   update() {
     super.update();
+
+    if (this.otherBody != null)
+      this.collidesWith(this.otherBody);
 
     //this.effect();
   }

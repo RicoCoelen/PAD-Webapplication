@@ -1,16 +1,16 @@
-/*
-This is the playing state class where the current game is setup
-*/
 class PlayingState extends GameObjectList {
 
   constructor() {
     // call base class
     super();
-    //creates the particle system
+    // resets the state
     this.reset();
-
   }
 
+  /*
+   this function resets the state and init all the variables
+   type:void
+  */
   reset() {
 
     super.reset();
@@ -26,19 +26,20 @@ class PlayingState extends GameObjectList {
     this.speedPad = new SpeedPad(624, height * 7 / 8, 175, height / 8);
     this.popupMenu = new PopupMenu(100, 100, width - 200, height - 200);
 
+    // Load level
+    this.levelLoader = new LevelLoader();
+    this.levelLoader.loadLevel(0, this, this.player);
+
     // create the player and the cannon/line
-    this.player = new Player(200, height - 150, 20, {isStatic: false, restitution: 0.99});
-    this.theCannon = new Cannon(200, height - 150, 100, this.player, 0.2);
+    this.player = new Player(200, height - 150, assets.monkey.width/2, {isStatic: false, restitution: 0.99});
+    this.theCannon = new Cannon(200, height - 150, 100, this.player, 0.5);
     this.tracingLine = new TracingLine(this.theCannon, this.player, 50);
 
-    // add static blocks
+    // add static blockss
     this.blocks.add(new StaticBox(200, height - 40, 25, 80));  // 1st
 
     // make static outer walls
-    this.blocks.add(new Boundary(-40, height/2, 80, 2000));      // left
-    this.blocks.add(new Boundary(width+40, height/2, 80, 2000)); // right
-    this.blocks.add(new Boundary(width/2, -40, 2000, 80));       // top
-    this.blocks.add(new Boundary(width/2, height+40, 2000, 80)); // bottom
+
 
     // add text objects
     this.texts.add(new TextGameObject(220, height - 50, "Geen Pijn"));
@@ -73,7 +74,7 @@ class PlayingState extends GameObjectList {
     }
 
 
-    if (this.player.body.position.y >= 580 && this.player.body.position.x >= 225 && this.player.body.position.x <= width){
+    if (this.player.body.position.y >= 560 && this.player.body.position.x >= 225 && this.player.body.position.x <= width){
       this.popupMenu.result = round((this.player.body.position.x - 150) / (width - 170) * 1000, 2) / 100;
       this.popupMenu.visible = true;
       Matter.Body.setVelocity(this.player.body, {x: 0, y:0});
@@ -82,5 +83,6 @@ class PlayingState extends GameObjectList {
     // gets the array with collisions form library
     this.water.collisions = Matter.Query.collides(this.water.body, [this.player.body]);
     this.speedPad.collisions = Matter.Query.collides(this.speedPad.body, [this.player.body]);
+    this.position = createVector(width/2, height/2) - this.player.position;
   }
 }

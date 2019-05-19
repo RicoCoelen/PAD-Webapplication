@@ -10,7 +10,8 @@ class SquareBox extends GameObject {
     this.w = w;
     this.h = h;
     this.texture = texture;
-    // add matter.js options for physics
+
+    // add matter.js options for
     this.options = options;
 
     // add rigidbody physics to box
@@ -30,18 +31,11 @@ class SquareBox extends GameObject {
     push();
     translate(pos.x, pos.y);
     rotate(angle);
-    rectMode(CENTER);
 
-    if (this.texture == 0) {
+    imageMode(CENTER);
 
-      image(assets.crate, -assets.crate.width / 2, -assets.crate.height / 2);
-      this.body.friction = 1;
-
-    } else if (this.texture == 1) {
-
-      image(assets.plank, -assets.plank.width / 2, -assets.plank.height / 2);
-      this.body.friction = 1;
-    }
+    image(this.texture, 0, 0);
+    this.body.friction = 1;
 
     pop();
   }

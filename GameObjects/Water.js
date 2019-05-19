@@ -1,4 +1,4 @@
-class Water extends GameObject{
+class Water extends GameObject {
   constructor(x, y, w, h, options = null) {
     // pass variables to upper class
     super(x, y);
@@ -21,18 +21,18 @@ class Water extends GameObject{
     this.lastCollissions = [];
   }
 
-  update(){
+  update() {
     super.update();
 
-    if(this.lastCollissions.length >= 1){
-      for(let i = 0; i < this.lastCollissions.length; i++){
+    if (this.lastCollissions.length >= 1) {
+      for (let i = 0; i < this.lastCollissions.length; i++) {
         this.lastCollissions[i].bodyB.frictionAir = 0.01;
       }
     }
 
     // changes the airfriction when in water
-    if(this.collisions.length >= 1){
-      for(let i = 0; i < this.collisions.length; i++){
+    if (this.collisions.length >= 1) {
+      for (let i = 0; i < this.collisions.length; i++) {
         this.collisions[i].bodyB.frictionAir = 0.04;
       }
     }
@@ -40,7 +40,7 @@ class Water extends GameObject{
     this.lastCollissions = this.collisions;
   }
 
-  draw(){
+  draw() {
     //get body position
     var pos = this.body.position;
 

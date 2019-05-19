@@ -3,6 +3,7 @@ class Level extends GameObjectList {
   constructor() {
     // call base class
     super();
+    levelmusic.loop();
   }
 
   reset() {
@@ -12,7 +13,7 @@ class Level extends GameObjectList {
     this.particleSystem = new ParticleSystem(createVector(250, 250));
 
     // create the player and the cannon
-    this.player = new Player(200, height - 150, 20, {
+    this.player = new Player(200, height - 150, assets.monkey.width / 2, {
       isStatic: false,
       restitution: 0.99
     });
@@ -28,16 +29,15 @@ class Level extends GameObjectList {
 
     // Load level
     this.levelLoader = new LevelLoader();
-    this.levelLoader.loadLevel(5, this);
+    this.levelLoader.loadLevel(6, this, this.player);
 
     // adds the player
     this.add(new SpriteGameObject(0, 0, assets.background2, assets.background2.width, assets.background2.height));
     this.add(this.player);
-    this.add(this.jumpPad);
     this.add(this.theCannon);
     this.add(this.tracingLine);
     this.add(this.blocks);
-
+    this.add(this.jumpPad);
   }
 
   update() {
@@ -50,10 +50,22 @@ class Level extends GameObjectList {
     }
 
     if (this.theCannon.shootingFase == 3 && this.player.body.speed < 0.30) {
-      //gameEnvironment.gameStateManager.switchTo("PlayingState");
+      gameEnvironment.gameStateManager.switchTo("PlayingState");
     }
 
     this.jumpPad.collisions = Matter.Query.collides(this.jumpPad.body, [this.player.body]);
+
+    this.position = createVector(width / 2, height / 2) - this.player.position;
+    //debugger;
+
+
+    //this.jumpPad.collidesWith(this.player.body);
+
+    // for (let i = 0; i < this.children.length; i++) {
+    //   if (Array.isArray(this.children[i])) {
+    //
+    //   }
+    // }
   }
 
 }

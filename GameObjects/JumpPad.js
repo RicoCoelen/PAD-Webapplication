@@ -21,8 +21,8 @@ class JumpPad extends SpriteGameObject {
     this.collisions = [];
   }
 
+  update() {
 
-  update(){
     super.update();
 
     this.vertices = this.body.vertices;
