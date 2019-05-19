@@ -54,8 +54,6 @@ class Coin extends SquareEffect {
 
     }
 
-    console.log(this.currentSinusTimer);
-
   }
 
 

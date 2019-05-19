@@ -81,5 +81,8 @@ class PlayingState extends GameObjectList {
       if(Array.isArray(this.children[i])){
       }
     }
+
+    this.position = createVector(width/2, height/2) - this.player.position;
+
   }
 }

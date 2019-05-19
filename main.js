@@ -2,6 +2,12 @@ var gameEnvironment;
 var world;
 var engine;
 var assets;
+let levelmusic;
+
+function preload() {
+  // preload() runs once
+  levelmusic = loadSound('assets/levelMusic.mpeg');
+}
 
 function setup() {
   // create canvas.

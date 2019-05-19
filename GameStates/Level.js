@@ -3,18 +3,18 @@ class Level extends GameObjectList {
   constructor() {
     // call base class
     super();
-
+    levelmusic.loop();
   }
 
   reset() {
-    
+
     super.reset();
 
     //creates the particle system
     this.particleSystem = new ParticleSystem(createVector(250, 250));
 
     // create the player and the cannon
-    this.player = new Player(200, height - 150, assets.monkey.width/2, {
+    this.player = new Player(200, height - 150, assets.monkey.width / 2, {
       isStatic: false,
       restitution: 0.99
     });
@@ -38,7 +38,6 @@ class Level extends GameObjectList {
     this.add(this.theCannon);
     this.add(this.tracingLine);
     this.add(this.blocks);
-
   }
 
   update() {
@@ -55,6 +54,10 @@ class Level extends GameObjectList {
       //this.reset();
       gameEnvironment.gameStateManager.switchTo("PlayingState");
     }
+
+    this.position = createVector(width / 2, height / 2) - this.player.position;
+    //debugger;
+
 
     //this.jumpPad.collidesWith(this.player.body);
 

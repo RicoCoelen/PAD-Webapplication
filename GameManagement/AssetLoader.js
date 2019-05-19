@@ -17,6 +17,7 @@ class AssetLoader {
     this.jumpsound = loadSound('assets/JumpSound.mp3');
     this.scoresound = loadSound('assets/scoreSound.wav');
     this.winsound = loadSound('assets/happyMonkey.wav');
+    this.levelmusic = loadSound('assets/levelMusic.mpeg');
   }
 
 

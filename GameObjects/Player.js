@@ -14,7 +14,7 @@ class Player extends GameObject {
     this.options = options;
     this.visible = false;
 
-    this.direction = this.velocity.y/this.velocity.x;
+    this.direction = this.velocity.y / this.velocity.x;
 
     // add rigidbody physics to box
     this.body = Matter.Bodies.circle(this.x, this.y, this.r, this.options);
@@ -38,8 +38,8 @@ class Player extends GameObject {
     translate(pos.x, pos.y);
     rotate(angle);
     //circle(0, 0, this.r);
-    if(this.visible == true) {
-      image(assets.monkey, -assets.monkey.width / 2 , -assets.monkey.height / 2 );
+    if (this.visible == true) {
+      image(assets.monkey, -assets.monkey.width / 2, -assets.monkey.height / 2);
     }
     pop();
   }
