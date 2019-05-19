@@ -61,6 +61,7 @@ class SpeedPad extends GameObject{
     fill(200, 200, 0, 60);
     push();
     translate(pos.x, pos.y);
+    cam.camTranslate();
     rotate(angle);
     rectMode(CENTER);
     rect(0, 0, this.w, this.h);

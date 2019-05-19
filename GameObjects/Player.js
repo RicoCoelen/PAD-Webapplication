@@ -36,7 +36,9 @@ class Player extends GameObject {
     // draw box
     push();
     translate(pos.x, pos.y);
+    cam.camTranslate();
     rotate(angle);
+
     //circle(0, 0, this.r);
     if (this.visible == true) {
       image(assets.monkey, -assets.monkey.width / 2, -assets.monkey.height / 2);

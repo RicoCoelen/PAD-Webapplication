@@ -80,6 +80,7 @@ class Cannon extends GameObject {
 
     push();
     translate(this.position.x, this.position.y);
+    cam.camTranslate();
     rotate(this.angle * -1);
     rectMode(CENTER);
     image(assets.cannon, -250, -40);

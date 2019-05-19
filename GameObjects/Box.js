@@ -32,6 +32,7 @@ class Box extends GameObject {
     // draw box
     push();
     translate(pos.x, pos.y);
+    cam.camTranslate();
     rotate(angle);
     rectMode(CENTER);
     rect(0, 0, this.w, this.h);

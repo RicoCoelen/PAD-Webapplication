@@ -48,6 +48,7 @@ class Water extends GameObject {
     fill(0, 0, 240, 60);
     push();
     translate(pos.x, pos.y);
+    cam.camTranslate();
     rectMode(CENTER);
     rect(0, 0, this.w, this.h);
     pop();

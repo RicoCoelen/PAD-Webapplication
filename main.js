@@ -3,17 +3,20 @@ var world;
 var engine;
 var assets;
 let levelmusic;
+let cam;
 
 function preload() {
   // preload() runs once
-  levelmusic = loadSound('assets/levelMusic.mpeg');
+  assets = new AssetLoader();
 }
 
 function setup() {
+
+  //add camera
+  cam = new Camera();
+
   // create canvas.
   createCanvas(1080, 600);
-
-  assets = new AssetLoader();
 
   // Creates gameEnvironment.
   gameEnvironment = new GameEnvironment();
@@ -22,7 +25,7 @@ function setup() {
   gameEnvironment.gameStateManager.add(new GameEnd(), "GameEnd");
   gameEnvironment.gameStateManager.add(new Level(), "Level");
   // change scene to first in array.
-  gameEnvironment.gameStateManager.switchTo("Level");
+  gameEnvironment.gameStateManager.switchTo("PlayingState");
 }
 
 function draw() {

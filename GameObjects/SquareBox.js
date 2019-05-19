@@ -30,6 +30,7 @@ class SquareBox extends GameObject {
     // draw box
     push();
     translate(pos.x, pos.y);
+    cam.camTranslate();
     rotate(angle);
 
     imageMode(CENTER);

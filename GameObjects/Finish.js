@@ -11,12 +11,12 @@ class Finish extends SquareEffect {
     this.body.isStatic = true;
     this.body.collisionFilter.category = 0;
     // checks collision
-    this.effect = function(otherBody) {
-
-      gameEnvironment.gameStateManager.switchTo("GameEnd");
-      assets.winsound.play();
-
-    }
+    // this.effect = function(otherBody) {
+    //
+    //   gameEnvironment.gameStateManager.switchTo("GameEnd");
+    //   assets.winsound.play();
+    //
+    // }
 
   }
 
@@ -32,8 +32,9 @@ class Finish extends SquareEffect {
     // draw box
     push();
     translate(pos.x, pos.y);
+    cam.camTranslate();
     rotate(angle);
-    rectMode(CENTER);
+
     image(assets.finish, -assets.finish.width / 2, -assets.finish.height / 2);
     pop();
   }

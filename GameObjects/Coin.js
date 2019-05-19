@@ -67,6 +67,7 @@ class Coin extends SquareEffect {
       // draw box
       push();
       translate(pos.x, pos.y);
+      cam.camTranslate();
       rotate(angle);
       image(this.texture, -this.texture.width / 2, -this.texture.height / 2);
       pop();

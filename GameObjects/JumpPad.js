@@ -54,8 +54,8 @@ class JumpPad extends SpriteGameObject {
     // draw box
     push();
     translate(pos.x, pos.y);
+    cam.camTranslate();
     rotate(angle);
-    rectMode(CENTER);
     image(this.sprite, 0 - this.w / 2, 0 - this.h / 2, this.w, this.h);
     pop();
   }

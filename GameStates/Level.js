@@ -3,7 +3,7 @@ class Level extends GameObjectList {
   constructor() {
     // call base class
     super();
-    levelmusic.loop();
+    assets.levelmusic.loop();
   }
 
   reset() {
@@ -66,6 +66,19 @@ class Level extends GameObjectList {
     //
     //   }
     // }
+
+    cam.setCam(width / 2 - this.player.body.position.x, 0);
+
+    if (this.player.body.position.x < width/2) {
+
+      cam.setCam(0, 0);
+
+    } else if (this.player.body.position > 100000) {
+
+      cam.setCam(10000000 - width/2);
+
+    }
+
   }
 
 }

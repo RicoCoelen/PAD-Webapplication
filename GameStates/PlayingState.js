@@ -66,7 +66,7 @@ class PlayingState extends GameObjectList {
 
     super.update();
 
-    if (this.theCannon.shootingFase == 3){
+    if (this.theCannon.shootingFase == 3) {
       this.player.visible = true;
     }
     else {
@@ -74,7 +74,7 @@ class PlayingState extends GameObjectList {
     }
 
 
-    if (this.player.body.position.y >= 560 && this.player.body.position.x >= 225 && this.player.body.position.x <= width){
+    if (this.player.body.position.y >= 560 && this.player.body.position.x >= 225 && this.player.body.position.x <= width) {
       this.popupMenu.result = round((this.player.body.position.x - 150) / (width - 170) * 1000, 2) / 100;
       this.popupMenu.visible = true;
       Matter.Body.setVelocity(this.player.body, {x: 0, y:0});
@@ -83,6 +83,18 @@ class PlayingState extends GameObjectList {
     // gets the array with collisions form library
     this.water.collisions = Matter.Query.collides(this.water.body, [this.player.body]);
     this.speedPad.collisions = Matter.Query.collides(this.speedPad.body, [this.player.body]);
-    this.position = createVector(width/2, height/2) - this.player.position;
+
+    cam.setCam(width/2-this.player.body.position.x, 0);
+
+    if (this.player.body.position.x < width/2) {
+
+      cam.setCam(0, 0);
+
+    } else if (this.player.body.position > 100000) {
+
+      cam.setCam(10000000 - width/2);
+
+    }
+
   }
 }
