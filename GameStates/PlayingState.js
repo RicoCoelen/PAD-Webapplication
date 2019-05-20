@@ -52,7 +52,7 @@ class PlayingState extends GameObjectList {
 
     // add the important stuff to gameobjectlist
 
-    this.add(new SpriteGameObject(0, 0, assets.background1, assets.background1.width, assets.background1.height));
+    this.add(new SpriteGameObject(width/2, height/2, assets.background1, assets.background1.width, assets.background1.height));
     this.add(this.player);
     this.add(this.theCannon);
     this.add(this.blocks);

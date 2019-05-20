@@ -12,6 +12,15 @@ class TextGameObject extends GameObject {
 
   draw() {
     // draw text on position
-    text(this.text, this.position.x, this.position.y);
+
+    push();
+
+    translate(this.position.x, this.position.y);
+    cam.camTranslate();
+
+    text(this.text, 0, 0);
+
+    pop();
+
   }
 }

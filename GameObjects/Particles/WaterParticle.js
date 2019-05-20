@@ -33,6 +33,7 @@ class WaterParticle extends GameObject {
     // draw box
     push();
     translate(pos.x, pos.y);
+    cam.camTranslate();
     rotate(angle);
     circle(0, 0, this.r);
     pop();

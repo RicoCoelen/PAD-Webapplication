@@ -14,8 +14,15 @@ class Button extends GameObject {
 
   draw() {
 
+    push();
+
+    translate(this.position.x, this.position.y);
+    cam.camTranslate();
+
     fill(255, 4,5);
-    rect(this.position.x, this.position.y, this.w, this.h);
+    rect(0, 0, this.w, this.h);
+
+    pop();
 
   }
 

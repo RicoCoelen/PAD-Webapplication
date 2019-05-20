@@ -32,7 +32,7 @@ class Level extends GameObjectList {
     this.levelLoader.loadLevel(6, this, this.player);
 
     // adds the player
-    this.add(new SpriteGameObject(0, 0, assets.background2, assets.background2.width, assets.background2.height));
+    this.add(new SpriteGameObject(width/2, height/2, assets.background2, assets.background2.width, assets.background2.height));
     this.add(this.player);
     this.add(this.theCannon);
     this.add(this.tracingLine);

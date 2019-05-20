@@ -65,7 +65,6 @@ class GameObjectList extends GameObject {
   handleInput(input) {
     for (let i = 0; i < this.children.length; i++) {
       this.children[i].handleInput(input);
-        print("IK GA EEN KALE KANKER NEGER DOOR ZIJN KALE KANKER KOP SCHIETEN");
     }
   }
 
