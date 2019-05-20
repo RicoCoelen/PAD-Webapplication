@@ -9,7 +9,7 @@ class Cannon extends GameObject {
     this.child = child;
 
     //prevents going to next shootingfase within a frame
-    this.cooldown = false;
+    this.cooldown = true;
 
     //determines what should be affected bij the user input
     this.shootingFase = 0;
@@ -73,20 +73,15 @@ class Cannon extends GameObject {
 
   draw() {
     fill(255);
-    // draw circle with changing sizes
-    //ellipse(this.position.x, this.position.y, this.radius * 2, this.radius * 2)
-    // draw line of circle
-
 
     push();
 
     cam.camTranslate();
-
-    line(this.position.x, this.position.y, (cos(this.angle) * this.radius) + this.position.x, -(sin(this.angle) * this.radius) + this.position.y);
-
     translate(this.position.x, this.position.y);
     rotate(this.angle * -1);
+
     image(assets.cannon, -250, -40);
+
     pop();
   }
 

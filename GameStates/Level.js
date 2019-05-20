@@ -29,7 +29,9 @@ class Level extends GameObjectList {
 
     // Load level
     this.levelLoader = new LevelLoader();
+    //let randomLevelIndex = this.levelLoader.randomLevel([0]);
     this.levelLoader.loadLevel(6, this, this.player);
+    this.levelWidth = this.levelLoader.levels.levels[6][0][0];
 
     // adds the player
     this.add(new SpriteGameObject(width/2, height/2, assets.background2, assets.background2.width, assets.background2.height));
@@ -38,6 +40,7 @@ class Level extends GameObjectList {
     this.add(this.tracingLine);
     this.add(this.blocks);
     this.add(this.jumpPad);
+
   }
 
   update() {
@@ -73,9 +76,9 @@ class Level extends GameObjectList {
 
       cam.setCam(0, 0);
 
-    } else if (this.player.body.position > 100000) {
+    } else if (this.player.body.position.x > this.levelWidth - width/2) {
 
-      cam.setCam(10000000 - width/2);
+      cam.setCam(width-this.levelWidth, 0);
 
     }
 

@@ -6,6 +6,9 @@ class GameObjectList extends GameObject {
   constructor() {
     super();
     this.reset();
+
+    this.gameObjectList = true;
+
   }
 
   reset() {
