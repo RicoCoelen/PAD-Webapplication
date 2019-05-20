@@ -31,8 +31,8 @@ class PlayingState extends GameObjectList {
     this.levelLoader.loadLevel(0, this, this.player);
 
     // create the player and the cannon/line
-    this.player = new Player(200, height - 150, assets.monkey.width/2, {isStatic: false, restitution: 0.99});
-    this.theCannon = new Cannon(200, height - 150, 100, this.player, 0.5);
+    this.player = new Player(50, height - 25, assets.monkey.width/2, {isStatic: false, restitution: 0.99});
+    this.theCannon = new Cannon(50, height - 25, 100, this.player, 0.5);
     this.tracingLine = new TracingLine(this.theCannon, this.player, 50);
 
     // add static blockss
@@ -54,10 +54,10 @@ class PlayingState extends GameObjectList {
 
     this.add(new SpriteGameObject(width/2, height/2, assets.background1, assets.background1.width, assets.background1.height));
     this.add(this.player);
+    this.add(this.tracingLine);
     this.add(this.theCannon);
     this.add(this.blocks);
     this.add(this.texts);
-    this.add(this.tracingLine);
     this.add(this.popupMenu);
 
   }
