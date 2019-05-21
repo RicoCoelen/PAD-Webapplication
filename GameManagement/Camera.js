@@ -8,23 +8,26 @@ class Camera {
 
   reset() {
 
-    this.position *= 0;
+    this.position = createVector(0, 0);
 
   }
 
   setCam(position, y = null) {
 
-    this.position = createVector();
+    this.position = createVector(0, 0);
 
     if (y == null) {
 
       this.position = position;
-      return;
+
+    } else {
+
+      this.position.x = position;
+      this.position.y = y;
 
     }
 
-    this.position.x = position;
-    this.position.y = y;
+
 
   }
 
@@ -41,9 +44,9 @@ class Camera {
 
   }
 
-  camTranslate() {
+  camTranslate(scalar = 1) {
 
-    translate(this.position.x, this.position.y);
+    translate(this.position.x * scalar, this.position.y * scalar);
 
   }
 

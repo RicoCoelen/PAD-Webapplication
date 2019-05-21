@@ -31,7 +31,7 @@ class LevelSelect extends GameObjectList {
         if (mouseIsPressed) {
           if (mouseX < (i * this.buttonWidth * this.horSpacing) + this.leftOffset + this.buttonWidth / 2 && mouseX > i * (i * this.buttonWidth * this.horSpacing) + this.leftOffset - this.buttonWidth &&
               mouseY < (j * this.buttonHeight * this.vertSpacing) + this.topOffset + this.buttonHeight / 2 && mouseY > (j * this.buttonHeight * this.vertSpacing) + this.topOffset - this.buttonHeight) {
-            gameEnvironment.gameStateManager.setGameState("Level", 6);
+            gameEnvironment.gameStateManager.setGameState("Level", i + j * this.columns);
             //this.levelLoader.loadLevel(3, this.level, this.player);
           }
         }

@@ -6,7 +6,7 @@ class LevelLoader {
 
   }
 
-  randomLevel(forbiddenLevels = null, state, player) {
+  randomLevel(forbiddenLevels) {
 
     let random = round(random(1, this.levels.levels.length));
 
@@ -16,21 +16,21 @@ class LevelLoader {
 
     }
 
-    loadLevel(random, state, player);
+    return random;
 
   }
 
 
-  loadLevel(index, state, player) {
+  loadLevel(index, state, player, nigger) {
 
     let level = this.levels.getLevel(index);
 
-    state.blocks.add(new Boundary(-100, height / 2, 200, 2000));
-    state.blocks.add(new Boundary(width + 100, height / 2, 200, 2000));
-    state.blocks.add(new Boundary(width / 2, -100, 2000, 200));
-    state.blocks.add(new Boundary(width / 2, height + 100, 2000, 200));
+    state.blocks.add(new Boundary(-100, height / 2, 200, 5000));
+    state.blocks.add(new Boundary(level[0][0] + 100, height / 2, 200, 5000));
+    state.blocks.add(new Boundary(width / 2, -100, 5000, 200));
+    state.blocks.add(new Boundary(width / 2, height + 100, 5000, 200));
 
-    for (let i = 0; i < level.length; i++) {
+    for (let i = 1; i < level.length; i++) {
 
       if (level[i][0] == 0) {
 
@@ -88,7 +88,7 @@ class LevelLoader {
       } else if (level[i][0] == 6) {
 
         let texture = assets.coin;
-        let coin = new Coin(level[i][1], level[i][2], texture, texture.width, texture.height, player.body);
+        let coin = new Coin(level[i][1], level[i][2], texture, texture.width, texture.height, player.body, nigger);
         Matter.Body.setAngle(coin.body, level[i][5]);
         state.blocks.add(coin);
 

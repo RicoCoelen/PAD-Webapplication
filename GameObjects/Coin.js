@@ -1,10 +1,11 @@
 class Coin extends SquareEffect {
 
-  constructor(x, y, texture, w, h, otherBody = null) {
+  constructor(x, y, texture, w, h, otherBody = null, nigger) {
 
     super(x, y, w, h, otherBody);
 
-    var life = 1;
+    this.life = true;
+    this.coinCounter = nigger;
 
     this.currentSinusTimer = 1;
     this.sinusTimer = 30;
@@ -17,16 +18,16 @@ class Coin extends SquareEffect {
 
     this.effect = function(otherBody) {
 
-      if (this.life = 1) {
+      if (this.life) {
 
-        this.life = 0;
+        this.life = false;
+        this.coinCounter[0] += 1;
         this.visible = false;
         assets.scoresound.play();
         Matter.Body.setPosition(this.body, {
           x: -600,
           y: -600
         })
-
       }
     };
 
@@ -35,6 +36,7 @@ class Coin extends SquareEffect {
   update() {
 
     super.update();
+    console.log(this.coinCounter);
 
     if (this.currentSinusTimer >= this.sinusTimer) {
 

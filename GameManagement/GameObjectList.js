@@ -6,6 +6,9 @@ class GameObjectList extends GameObject {
   constructor() {
     super();
     this.reset();
+
+    this.gameObjectList = true;
+
   }
 
   reset() {
@@ -31,6 +34,7 @@ class GameObjectList extends GameObject {
       this.children[i].update();
     }
     Matter.Engine.update(this.engine);
+
   }
 
   draw() {

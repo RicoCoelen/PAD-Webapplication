@@ -10,13 +10,14 @@ class Finish extends SquareEffect {
 
     this.body.isStatic = true;
     this.body.collisionFilter.category = 0;
-    // checks collision
-    // this.effect = function(otherBody) {
-    //
-    //   gameEnvironment.gameStateManager.switchTo("GameEnd");
-    //   assets.winsound.play();
-    //
-    // }
+
+    //checks collision
+    this.effect = function(otherBody) {
+
+      gameEnvironment.gameStateManager.switchTo("GameEnd");
+      assets.winsound.play();
+
+    }
 
   }
 
