@@ -13,6 +13,7 @@ class AssetLoader {
     this.plank = loadImage('assets/plank.png');
     this.stone = loadImage('assets/cobblestone.png');
     this.coin = loadImage('assets/banana.png');
+    this.blackTriangle = loadImage('assets/blackTriangle.png');
 
     this.jumpsound = loadSound('assets/JumpSound.mp3');
     this.scoresound = loadSound('assets/scoreSound.wav');

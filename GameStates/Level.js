@@ -34,12 +34,16 @@ class Level extends GameObjectList {
     this.levelWidth = this.levelLoader.levels.levels[6][0][0];
 
     // adds the player
-    this.add(new SpriteGameObject(width/2, height/2, assets.background2, assets.background2.width, assets.background2.height));
+    this.add(new SpriteGameObject(width/2, height/2, assets.background2));
     this.add(this.player);
     this.add(this.theCannon);
     this.add(this.tracingLine);
     this.add(this.blocks);
     this.add(this.jumpPad);
+
+    let poly = new Polygon(400, 100, assets.blackTriangle, 3, 0);
+
+    this.add(poly);
 
   }
 

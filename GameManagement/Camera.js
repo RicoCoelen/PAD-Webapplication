@@ -8,13 +8,13 @@ class Camera {
 
   reset() {
 
-    this.position *= 0;
+    this.position = createVector(0, 0);
 
   }
 
   setCam(position, y = null) {
 
-    this.position = createVector();
+    this.position = createVector(0, 0);
 
     if (y == null) {
 
