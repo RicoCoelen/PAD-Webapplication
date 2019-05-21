@@ -31,27 +31,25 @@ class PlayingState extends GameObjectList {
     this.levelLoader.loadLevel(0, this, this.player);
 
     // create the player and the cannon/line
-    this.player = new Player(50, height - 25, assets.monkey.width/2, {isStatic: false, restitution: 0.99});
+    this.player = new Player(50, height - 27, assets.monkey.width/2, {isStatic: false, restitution: 0.99});
     this.theCannon = new Cannon(100, height - 25, 100, this.player, 0.5);
     this.tracingLine = new TracingLine(this.theCannon, this.player, 50);
-
-
-
-    // make static outer walls
-
 
     // add text objects
     this.texts.add(new TextGameObject(220, height - 50, "Geen Pijn"));
     this.texts.add(new TextGameObject((220 + width - 100) / 2, height - 50, "Gemmidelde Pijn"));
     this.texts.add(new TextGameObject(width - 100, height - 50, "Erg Veel Pijn"));
 
-    for(let i = 1; i <= 10 ; i++){
-      this.texts.add(new TextGameObject(150 + (width - 170) / 10 * i, height - 20, i));
+    this.levelWidth = this.levelLoader.levels.levels[0][0][0];
+
+    for (let i = 1; i <= 10 ; i++) {
+
+      this.texts.add(new TextGameObject(150 + (this.levelWidth - 220) / 10 * i, height - 20, i));
+
     }
 
     // add the important stuff to gameobjectlist
-
-    this.add(new SpriteGameObject(assets.background1.width/2, height/2, assets.background1, assets.background1.width, assets.background1.height));
+    this.add(new SpriteGameObject(width/2, height/2, assets.background1, assets.background1.width, assets.background1.height));
     this.add(this.player);
     this.add(this.tracingLine);
     this.add(this.theCannon);
@@ -67,14 +65,13 @@ class PlayingState extends GameObjectList {
 
     if (this.theCannon.shootingFase == 3) {
       this.player.visible = true;
-    }
-    else {
+    } else {
       this.player.visible = false;
     }
 
 
-    if (this.player.body.position.y >= 560 && this.player.body.position.x >= 225 && this.player.body.position.x <= width) {
-      this.popupMenu.result = round((this.player.body.position.x - 150) / (width - 170) * 1000, 2) / 100;
+    if (this.player.body.position.y >= (height-this.player.r) && this.player.body.position.x >= 0 && this.player.body.position.x <= this.levelWidth) {
+      this.popupMenu.result = max(1, min(10, round((this.player.body.position.x - 150) / (this.levelWidth - 220) * 1000, 2) / 100));
       this.popupMenu.visible = true;
       Matter.Body.setVelocity(this.player.body, {x: 0, y:0});
     }
@@ -89,9 +86,9 @@ class PlayingState extends GameObjectList {
 
       cam.setCam(0, 0);
 
-    } else if (this.player.body.position > 100000) {
+    } else if (this.player.body.position.x > this.levelWidth - width/2) {
 
-      cam.setCam(10000000 - width/2);
+      cam.setCam(width-this.levelWidth, 0);
 
     }
 

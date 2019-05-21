@@ -28,6 +28,7 @@ class Level extends GameObjectList {
     // Load level
     this.levelLoader = new LevelLoader();
     this.levelLoader.loadLevel(6, this, this.player, this.coinCounter);
+    this.levelWidth = this.levelLoader.levels.levels[6][0][0];
 
     this.scoreText = new ScoreBoard(50, 50, this.coinCounter);
 
@@ -83,9 +84,9 @@ class Level extends GameObjectList {
 
       cam.setCam(0, 0);
 
-    } else if (this.player.body.position > 100000) {
+    } else if (this.player.body.position.x > this.levelWidth - width/2) {
 
-      cam.setCam(10000000 - width/2);
+      cam.setCam(width-this.levelWidth, 0);
 
     }
 
