@@ -10,7 +10,8 @@ class GameEnd extends GameObjectList {
 
     super.reset();
 
-    this.add(new SpriteGameObject(0, 0, assets.winningbackground, assets.winningbackground.width, assets.winningbackground.height));
+    
+    this.add(new SpriteGameObject(width/2, height/2, assets.winningbackground));
 
   }
 }

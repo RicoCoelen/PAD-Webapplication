@@ -41,9 +41,9 @@ class Camera {
 
   }
 
-  camTranslate() {
-
-    translate(this.position.x, this.position.y);
+  camTranslate(scalar = 1) {
+    
+    translate(this.position.x * scalar, this.position.y * scalar);
 
   }
 

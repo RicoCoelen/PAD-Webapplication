@@ -2,7 +2,7 @@
 
 class SpriteGameObject extends GameObject {
 
-  constructor(x = 0, y = 0, sprite, w = 0, h = 0, rotation = 0) {
+  constructor(x = 0, y = 0, sprite, w = 0, h = 0, rotation = 0, cameraScalar = 1) {
     super(x, y);
     this.sprite = sprite;
     this.w = sprite.width;
@@ -10,6 +10,7 @@ class SpriteGameObject extends GameObject {
     this.x = x;
     this.y = y;
     this.rotation = rotation;
+    this.cameraScalar = cameraScalar;
 
   }
 
@@ -18,7 +19,7 @@ class SpriteGameObject extends GameObject {
     push();
 
     translate(this.x, this.y);
-    cam.camTranslate();
+    cam.camTranslate(this.cameraScalar);
     rotate(this.rotation);
 
     image(this.sprite, -this.w/2, -this.h/2);

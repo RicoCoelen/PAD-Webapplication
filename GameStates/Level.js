@@ -9,6 +9,8 @@ class Level extends GameObjectList {
   reset() {
     super.reset();
 
+    this.coinCounter = [0];
+
     //creates the particle system
     this.particleSystem = new ParticleSystem(createVector(250, 250));
 
@@ -22,22 +24,30 @@ class Level extends GameObjectList {
 
     // // add extra game object list to keep it ordered
     this.blocks = new GameObjectList();
-    this.texts = new GameObjectList();
 
     // Load level
     this.levelLoader = new LevelLoader();
-    this.levelLoader.loadLevel(6, this, this.player);
+    this.levelLoader.loadLevel(6, this, this.player, this.coinCounter);
+
+    this.scoreText = new ScoreBoard(50, 50, this.coinCounter);
+
+    for (let i = 0; i < 3; i++) {
+
+      this.add(new SpriteGameObject(assets.junglebackground3.width/2 + assets.junglebackground3.width*i, height/2, assets.junglebackground3, assets.junglebackground3.width, assets.junglebackground3.height, 0, 1/3));
+      this.add(new SpriteGameObject(assets.junglebackground2.width/2 + assets.junglebackground2.width*i, height/2, assets.junglebackground2, assets.junglebackground2.width, assets.junglebackground2.height, 0, 2/3));
+      this.add(new SpriteGameObject(assets.junglebackground1.width/2 + assets.junglebackground1.width*i, height/2, assets.junglebackground1, assets.junglebackground1.width, assets.junglebackground1.height));
+
+    }
+
 
     // adds the player
-    this.add(new SpriteGameObject(width/2, height/2, assets.junglebackground3, assets.junglebackground3.width, assets.junglebackground3.height));
-    this.add(new SpriteGameObject(width/2, height/2, assets.junglebackground2, assets.junglebackground2.width, assets.junglebackground2.height));
-    this.add(new SpriteGameObject(width/2, height/2, assets.junglebackground1, assets.junglebackground1.width, assets.junglebackground1.height));
-
     this.add(this.player);
     this.add(this.theCannon);
     this.add(this.tracingLine);
     this.add(this.blocks);
     this.add(this.jumpPad);
+    this.add(this.scoreText);
+
   }
 
   update() {

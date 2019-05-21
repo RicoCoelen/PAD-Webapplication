@@ -17,6 +17,7 @@ class AssetLoader {
     this.junglebackground1 = loadImage('assets/jungleBackground1.png');
     this.junglebackground2 = loadImage('assets/JungleBackground2.png');
     this.junglebackground3 = loadImage('assets/jungleBackground3.png');
+    this.junglefont = loadFont('assets/TribecaRegular.ttf');
 
     this.jumpsound = loadSound('assets/JumpSound.mp3');
     this.scoresound = loadSound('assets/scoreSound.wav');
