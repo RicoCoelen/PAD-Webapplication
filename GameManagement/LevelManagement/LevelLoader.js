@@ -6,7 +6,7 @@ class LevelLoader {
 
   }
 
-  randomLevel(forbiddenLevels, state, player) {
+  randomLevel(forbiddenLevels = null, state, player) {
 
     let random = round(random(1, this.levels.levels.length));
 

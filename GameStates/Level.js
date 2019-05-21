@@ -3,7 +3,7 @@ class Level extends GameObjectList {
   constructor() {
     // call base class
     super();
-    assets.levelmusic.loop();
+    //assets.levelmusic.loop();
   }
 
   reset() {
@@ -27,7 +27,9 @@ class Level extends GameObjectList {
 
     // Load level
     this.levelLoader = new LevelLoader();
-    this.levelLoader.loadLevel(6, this, this.player);
+    console.log(this.info);
+    if (this.info != null)
+      this.levelLoader.loadLevel(6, this, this.player);
 
     // adds the player
     this.add(new SpriteGameObject(width/2, height/2, assets.junglebackground3, assets.junglebackground3.width, assets.junglebackground3.height));
@@ -40,6 +42,7 @@ class Level extends GameObjectList {
     this.add(this.blocks);
     this.add(this.jumpPad);
     this.add(this.speedPad);*/
+
   }
 
   update() {
