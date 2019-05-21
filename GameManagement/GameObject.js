@@ -8,7 +8,6 @@ class GameObject {
     this.position = createVector(x, y);
     this.velocity = createVector(vx, vy);
     this.parent = null;
-
   }
 
   setBody(bodyType) {

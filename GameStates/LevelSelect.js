@@ -28,14 +28,17 @@ class LevelSelect extends GameObjectList {
 
     this.lastMousePressed;
 
-    for (let i = 0; i <= this.rows; i++) {
-      for (let j = 0; j <= this.columns; j++) {
-        if (mouseIsPressed && this.lastMousePressed == false) {
+    if (mouseIsPressed && this.lastMousePressed == false) {
+      for (let i = 0; i <= this.rows; i++) {
+        for (let j = 0; j <= this.columns; j++) {
           if (mouseX < (i * this.buttonWidth * this.horSpacing) + this.leftOffset + this.buttonWidth / 2 && mouseX > i * (i * (this.buttonWidth + this.horSpacing)) + this.leftOffset - this.buttonWidth &&
               mouseY < (j * this.buttonHeight * this.vertSpacing) + this.topOffset + this.buttonHeight / 2 && mouseY > (j * this.buttonHeight * this.vertSpacing) + this.topOffset - this.buttonHeight) {
             gameEnvironment.gameStateManager.setGameState("Level", i + j * this.columns);
           }
         }
+      }
+      if(mouseX > 540 - this.buttonWidth / 2 && mouseX < 540 + this.buttonWidth / 2 && mouseY > 560 - this.buttonHeight / 2 && mouseY < 560 + this.buttonHeight / 2){
+        gameEnvironment.gameStateManager.switchTo("Menu");
       }
     }
 
@@ -46,9 +49,17 @@ class LevelSelect extends GameObjectList {
 
     for (let i = 0; i < this.rows; i++) {
       for (let j = 0; j < this.columns; j++) {
-        rectMode(CENTER);
-        rect(this.leftOffset + (j * this.buttonWidth * this.horSpacing), this.topOffset + (i * this.buttonHeight * this.vertSpacing), this.buttonWidth, this.buttonHeight);
+        imageMode(CENTER);
+        image(assets.button, this.leftOffset + (i * this.buttonWidth * this.horSpacing), this.topOffset + (j * this.buttonHeight * this.vertSpacing), this.buttonWidth, this.buttonHeight);
+        textAlign(CENTER);
+        textSize(20);
+        fill(40);
+        textFont(assets.afritubufont, 36);
+        text(i + 4 * j + 1, this.leftOffset + (i * this.buttonWidth * this.horSpacing), this.topOffset + (j * this.buttonHeight * this.vertSpacing) + this.buttonHeight / 4);
       }
     }
+    image(assets.button, 540, 560, this.buttonWidth, this.buttonHeight);
+    text("MENU", 540, 560 + this.buttonHeight / 4);
+    imageMode(CORNER);
   }
 }

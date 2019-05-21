@@ -4,6 +4,7 @@ class AssetLoader {
     this.winningbackground = loadImage('assets/winningBackground.png');
     this.background1 = loadImage('assets/background1.jpg');
     this.background2 = loadImage('assets/background2.jpeg');
+    this.button = loadImage('assets/button.png')
     this.crate = loadImage('assets/crate.png');
     this.carriage = loadImage('assets/carriage.png');
     this.cannonbarrel = loadImage('assets/cannonBarrel.png');
@@ -18,6 +19,7 @@ class AssetLoader {
     this.junglebackground2 = loadImage('assets/JungleBackground2.png');
     this.junglebackground3 = loadImage('assets/jungleBackground3.png');
     this.junglefont = loadFont('assets/TribecaRegular.ttf');
+    this.afritubufont = loadFont('assets/Afritubu.ttf');
     this.blackTriangle = loadImage('assets/blackTriangle.png');
 
     this.jumpsound = loadSound('assets/JumpSound.mp3');

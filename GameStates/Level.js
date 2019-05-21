@@ -3,7 +3,7 @@ class Level extends GameObjectList {
   constructor() {
     // call base class
     super();
-    //assets.levelmusic.loop();
+    assets.levelmusic.loop();
   }
 
   reset() {
