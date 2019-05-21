@@ -34,12 +34,12 @@ class Level extends GameObjectList {
     this.add(new SpriteGameObject(width/2, height/2, assets.junglebackground2, assets.junglebackground2.width, assets.junglebackground2.height));
     this.add(new SpriteGameObject(width/2, height/2, assets.junglebackground1, assets.junglebackground1.width, assets.junglebackground1.height));
 
-    this.add(this.player);
+    /*this.add(this.player);
     this.add(this.theCannon);
     this.add(this.tracingLine);
     this.add(this.blocks);
     this.add(this.jumpPad);
-    this.add(this.speedPad);
+    this.add(this.speedPad);*/
   }
 
   update() {
