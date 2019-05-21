@@ -34,6 +34,7 @@ class GameObjectList extends GameObject {
       this.children[i].update();
     }
     Matter.Engine.update(this.engine);
+
   }
 
   draw() {

@@ -34,9 +34,9 @@ class Level extends GameObjectList {
 
     for (let i = 0; i < 3; i++) {
 
-      this.add(new SpriteGameObject(assets.junglebackground3.width/2 + assets.junglebackground3.width*i, height/2, assets.junglebackground3, assets.junglebackground3.width, assets.junglebackground3.height, 0, 1/3));
-      this.add(new SpriteGameObject(assets.junglebackground2.width/2 + assets.junglebackground2.width*i, height/2, assets.junglebackground2, assets.junglebackground2.width, assets.junglebackground2.height, 0, 2/3));
-      this.add(new SpriteGameObject(assets.junglebackground1.width/2 + assets.junglebackground1.width*i, height/2, assets.junglebackground1, assets.junglebackground1.width, assets.junglebackground1.height));
+      this.add(new SpriteGameObject(assets.junglebackground3.width/2 + assets.junglebackground3.width*i, height/2, assets.junglebackground3, 0, 1/3));
+      this.add(new SpriteGameObject(assets.junglebackground2.width/2 + assets.junglebackground2.width*i, height/2, assets.junglebackground2, 0, 2/3));
+      this.add(new SpriteGameObject(assets.junglebackground1.width/2 + assets.junglebackground1.width*i, height/2, assets.junglebackground1));
 
     }
 
@@ -48,6 +48,10 @@ class Level extends GameObjectList {
     this.add(this.blocks);
     this.add(this.jumpPad);
     this.add(this.scoreText);
+
+    let poly = new Polygon(400, 100, assets.blackTriangle, 3, 0);
+
+    this.add(poly);
 
   }
 

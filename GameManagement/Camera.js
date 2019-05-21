@@ -19,12 +19,15 @@ class Camera {
     if (y == null) {
 
       this.position = position;
-      return;
+
+    } else {
+
+      this.position.x = position;
+      this.position.y = y;
 
     }
 
-    this.position.x = position;
-    this.position.y = y;
+
 
   }
 
