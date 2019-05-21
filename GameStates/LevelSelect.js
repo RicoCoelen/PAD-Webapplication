@@ -26,17 +26,20 @@ class LevelSelect extends GameObjectList {
 
   update() {
 
+    this.lastMousePressed;
+
     for (let i = 0; i <= this.rows; i++) {
       for (let j = 0; j <= this.columns; j++) {
-        if (mouseIsPressed) {
-          if (mouseX < (i * this.buttonWidth * this.horSpacing) + this.leftOffset + this.buttonWidth / 2 && mouseX > i * (i * this.buttonWidth * this.horSpacing) + this.leftOffset - this.buttonWidth &&
+        if (mouseIsPressed && this.lastMousePressed == false) {
+          if (mouseX < (i * this.buttonWidth * this.horSpacing) + this.leftOffset + this.buttonWidth / 2 && mouseX > i * (i * (this.buttonWidth + this.horSpacing)) + this.leftOffset - this.buttonWidth &&
               mouseY < (j * this.buttonHeight * this.vertSpacing) + this.topOffset + this.buttonHeight / 2 && mouseY > (j * this.buttonHeight * this.vertSpacing) + this.topOffset - this.buttonHeight) {
             gameEnvironment.gameStateManager.setGameState("Level", i + j * this.columns);
-            //this.levelLoader.loadLevel(3, this.level, this.player);
           }
         }
       }
     }
+
+    this.lastMousePressed = mouseIsPressed;
   }
 
   draw() {
