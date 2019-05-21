@@ -82,12 +82,20 @@ class Cannon extends GameObject {
 
     cam.camTranslate();
 
-    line(this.position.x, this.position.y, (cos(this.angle) * this.radius) + this.position.x, -(sin(this.angle) * this.radius) + this.position.y);
-
     translate(this.position.x, this.position.y);
     rotate(this.angle * -1);
-    image(assets.cannon, -250, -40);
+    image(assets.cannonbarrel, - 20, -45);
     pop();
+
+    push();
+
+    cam.camTranslate();
+
+    translate(this.position.x - 35 , this.position.y);
+
+    image(assets.carriage, 0, -40);
+    pop();
+
   }
 
 }
