@@ -20,8 +20,8 @@ class Level extends GameObjectList {
 
     // add new object and add to object list
     this.tracingLine = new TracingLine(this.theCannon, this.player);
-    this.jumpPad = new JumpPad(width - 100, height - 50, 200, 28);
-    this.speedPad = new SpeedPad(width - 100, height - 50, 200, 28);
+    this.jumpPad = new JumpPad(-500, height - 50, 200, 28);
+    this.speedPad = new SpeedPad(-500, height - 50, 200, 28);
 
     // // add extra game object list to keep it ordered
     this.blocks = new GameObjectList();
@@ -52,10 +52,6 @@ class Level extends GameObjectList {
     this.add(this.jumpPad);
     this.add(this.scoreText);
 
-    let poly = new Polygon(400, 100, assets.blackTriangle, 3, 0);
-
-    this.add(poly);
-
   }
 
   update() {
@@ -65,15 +61,6 @@ class Level extends GameObjectList {
       this.player.visible = true;
     } else {
       this.player.visible = false;
-    }
-
-    if (this.theCannon.shootingFase == 3 && this.player.body.speed < 0.30) {
-      //gameEnvironment.gameStateManager.switchTo("PlayingState");
-    }
-
-    for(let i = 0; i < this.blocks.children.length; i++){
-      this.jumpPad.collisions = Matter.Query.collides(this.jumpPad.body, [this.blocks.children[i].body]);
-      this.speedPad.collisions = Matter.Query.collides(this.speedPad.body, [this.blocks.children[i].body]);
     }
 
     this.jumpPad.collisions = Matter.Query.collides(this.jumpPad.body, [this.player.body]);

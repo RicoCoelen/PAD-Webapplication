@@ -21,6 +21,7 @@ class AssetLoader {
     this.junglefont = loadFont('assets/TribecaRegular.ttf');
     this.afritubufont = loadFont('assets/Afritubu.ttf');
     this.blackTriangle = loadImage('assets/blackTriangle.png');
+    this.speedpad = loadImage('assets/speedPad.png')
 
     this.jumpsound = loadSound('assets/JumpSound.mp3');
     this.scoresound = loadSound('assets/scoreSound.wav');

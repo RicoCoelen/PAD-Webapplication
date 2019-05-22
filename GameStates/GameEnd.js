@@ -7,6 +7,13 @@ class GameEnd extends GameObjectList {
 
   }
 
+  update(){
+    super.update();
+
+    if(keyIsPressed)
+      gameEnvironment.gameStateManager.switchTo("LevelSelect");
+  }
+
   reset() {
 
     super.reset();
@@ -24,7 +31,6 @@ class GameEnd extends GameObjectList {
 
     }
 
-    console.log(cam.position);
     super.draw();
 
   }

@@ -29,9 +29,9 @@ class LevelSelect extends GameObjectList {
     this.lastMousePressed;
 
     if (mouseIsPressed && this.lastMousePressed == false) {
-      for (let i = 0; i <= this.rows; i++) {
-        for (let j = 0; j <= this.columns; j++) {
-          if (mouseX < (i * this.buttonWidth * this.horSpacing) + this.leftOffset + this.buttonWidth / 2 && mouseX > i * (i * (this.buttonWidth + this.horSpacing)) + this.leftOffset - this.buttonWidth &&
+      for (let i = 0; i < this.rows; i++) {
+        for (let j = 0; j < this.columns; j++) {
+          if (mouseX < (i * this.buttonWidth * this.horSpacing) + this.leftOffset + this.buttonWidth / 2 && mouseX > (i * this.buttonWidth * this.horSpacing) + this.leftOffset - this.buttonWidth &&
               mouseY < (j * this.buttonHeight * this.vertSpacing) + this.topOffset + this.buttonHeight / 2 && mouseY > (j * this.buttonHeight * this.vertSpacing) + this.topOffset - this.buttonHeight) {
             gameEnvironment.gameStateManager.setGameState("Level", i + j * this.columns);
           }
