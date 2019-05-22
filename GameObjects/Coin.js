@@ -36,7 +36,6 @@ class Coin extends SquareEffect {
   update() {
 
     super.update();
-    console.log(this.coinCounter);
 
     if (this.currentSinusTimer >= this.sinusTimer) {
 

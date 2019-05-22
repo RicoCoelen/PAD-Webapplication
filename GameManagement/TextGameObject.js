@@ -18,6 +18,7 @@ class TextGameObject extends GameObject {
     translate(this.position.x, this.position.y);
     cam.camTranslate();
 
+    textFont(assets.afritubufont, 20);
     text(this.text, 0, 0);
 
     pop();

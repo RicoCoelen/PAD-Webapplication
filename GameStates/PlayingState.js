@@ -49,7 +49,9 @@ class PlayingState extends GameObjectList {
     }
 
     // add the important stuff to gameobjectlist
-    this.add(new SpriteGameObject(width/2, height/2, assets.background1));
+    this.add(new SpriteGameObject(width/2, height/2, assets.junglebackground3));
+    this.add(new SpriteGameObject(width/2, height/2, assets.junglebackground2));
+    this.add(new SpriteGameObject(width/2, height/2, assets.junglebackground1));
     this.add(this.player);
     this.add(this.tracingLine);
     this.add(this.theCannon);

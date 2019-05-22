@@ -21,9 +21,6 @@ class Finish extends SquareEffect {
 
   }
 
-  update() {
-    super.update();
-  }
 
   draw() {
     // get position and angle of rigidbody
@@ -35,9 +32,7 @@ class Finish extends SquareEffect {
     translate(pos.x, pos.y);
     cam.camTranslate();
     rotate(angle);
-
     image(assets.finish, -assets.finish.width / 2, -assets.finish.height / 2);
     pop();
   }
-
 }

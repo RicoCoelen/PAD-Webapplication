@@ -4,11 +4,13 @@ class AssetLoader {
     this.winningbackground = loadImage('assets/winningBackground.png');
     this.background1 = loadImage('assets/background1.jpg');
     this.background2 = loadImage('assets/background2.jpeg');
+    this.button = loadImage('assets/button.png')
     this.crate = loadImage('assets/crate.png');
     this.carriage = loadImage('assets/carriage.png');
     this.cannonbarrel = loadImage('assets/cannonBarrel.png');
     this.monkey = loadImage('assets/monkey.png');
     this.finish = loadImage('assets/finish.png');
+    this.water = loadImage('assets/water.png');
     this.jumppad = loadImage('assets/Jumppad.png')
     this.dirt = loadImage('assets/dirtblock.png');
     this.plank = loadImage('assets/plank.png');
@@ -18,7 +20,10 @@ class AssetLoader {
     this.junglebackground2 = loadImage('assets/JungleBackground2.png');
     this.junglebackground3 = loadImage('assets/jungleBackground3.png');
     this.junglefont = loadFont('assets/TribecaRegular.ttf');
+    this.afritubufont = loadFont('assets/Afritubu.ttf');
     this.blackTriangle = loadImage('assets/blackTriangle.png');
+    this.speedpad = loadImage('assets/speedPad.png');
+    this.mainbg = loadImage('assets/background_Main.png');
 
     this.jumpsound = loadSound('assets/JumpSound.mp3');
     this.scoresound = loadSound('assets/scoreSound.wav');

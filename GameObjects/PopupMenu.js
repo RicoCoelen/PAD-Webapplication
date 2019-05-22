@@ -36,9 +36,11 @@ class PopupMenu extends GameObject{
       fill(0);
       textSize(50);
       text(this.result, this.x + this.w / 2, this.y + this.h / 2);
-      text("Jouw pijnscore is:", this.x + this.w / 2, this.y + this.h / 3);
+      text("jouw pijnscore is:", this.x + this.w / 2, this.y + this.h / 3);
+      text("Opnieuw", this.x + this.w * (1.5 / 5), this.y + this.h * (2 / 3) + this.h / 8);
+      text("Door", this.x + this.w * (2.5 / 5) + this.w / 5, this.y + this.h * (2 / 3) + this.h / 8)
       textSize(12);
-      textAlign(LEFT);
+      textAlign(CORNER);
     }
   }
 }

@@ -1,54 +1,36 @@
-class SpeedPad extends GameObject{
-  constructor(x, y, w, h, options = null){
+class SpeedPad extends SquareEffect{
+
+  constructor(x, y, w, h, otherBody = null){
     // pass variables to upper class
-    super(x, y);
+    super(x, y, w, h, otherBody);
 
     // save variables to object
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
+    this.sprite = assets.speedpad;
 
-    // add matter.js options for physics
-    this.options = options;
+    this.isTouched = false;
 
     // add rigidbody physics to box
-    this.body = Matter.Bodies.rectangle(this.x, this.y, this.w, this.h, this.options);
+    this.body = Matter.Bodies.rectangle(this.x, this.y, this.w, this.h);
+    this.body.isStatic = true;
+    this.effect = function (otherBody) {
+      this.vertices = this.body.vertices;
 
-    // if flipped objects will be sent to the left instead
-    this.flipped = true;
-
-    this.collisions = [];
-  }
-
-
-  update(){
-    super.update();
-
-    this.vertices = this.body.vertices;
-
-    if(this.collisions.length >= 1){
-
-      for(let i = 0; i < this.collisions.length; i++){
-
-        if(this.vertices[0].x < this.collisions[i].bodyA.position.x && this.vertices[1].x > this.collisions[i].bodyA.position.x){
-
-          if(abs(this.collisions[i].bodyA.position.y * 2 - this.vertices[0].y - this.vertices[1].y) <= abs(this.collisions[i].bodyA.position.y * 2 - this.vertices[2].y - this.vertices[3].y)){
-            if(this.flipped){
-              Matter.Body.setVelocity(this.collisions[i].bodyA, {
-                x: this.collisions[i].bodyA.velocity.x - (this.vertices[1].x - this.vertices[0].x) / this.w,
-                y: this.collisions[i].bodyA.velocity.y - (this.vertices[0].y - this.vertices[1].y) / this.w
-              });
-            }else{
-              Matter.Body.setVelocity(this.collisions[i].bodyA, {
-                x: this.collisions[i].bodyA.velocity.x - (this.vertices[0].x - this.vertices[1].x) / this.w,
-                y: this.collisions[i].bodyA.velocity.y - (this.vertices[0].y - this.vertices[1].y) / this.w
-              });
-            }
-          }
-        }
+      if (this.isTouched == false) {
+        otherBody.velocity.x = 0;
+        this.isTouched = true;
       }
-    }
+
+      Matter.Body.setVelocity(otherBody, {
+        x: otherBody.velocity.x + (this.vertices[1].x - this.vertices[0].x + 1000) / this.w,
+        y: otherBody.velocity.y - (this.vertices[0].y - this.vertices[1].y) / this.w
+      });
+
+    };
+
   }
 
 
@@ -58,15 +40,11 @@ class SpeedPad extends GameObject{
     var angle = this.body.angle;
 
     // draw box
-    fill(200, 200, 0, 60);
     push();
     translate(pos.x, pos.y);
     cam.camTranslate();
     rotate(angle);
-    rectMode(CENTER);
-    rect(0, 0, this.w, this.h);
-    rect(0, -this.h / 4, this.w, this.h / 2);
+    image(this.sprite, 0 - this.w / 2, 0 - this.h / 2, this.w, this.h);
     pop();
-    fill(0);
   }
 }
