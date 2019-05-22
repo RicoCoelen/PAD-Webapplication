@@ -3,8 +3,9 @@ class Level extends GameObjectList {
   constructor() {
     // call base class
     super();
-    //assets.levelmusic.setVolume(0.25);
-    //assets.levelmusic.loop();
+    assets.levelmusic.setVolume(0.25);
+    assets.levelmusic.loop();
+    
   }
 
   reset() {
@@ -49,6 +50,8 @@ class Level extends GameObjectList {
     this.add(this.tracingLine);
     this.add(this.blocks);
     this.add(this.scoreText);
+
+    this.lastMousePressed = true;
 
   }
 
