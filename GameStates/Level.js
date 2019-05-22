@@ -20,8 +20,6 @@ class Level extends GameObjectList {
 
     // add new object and add to object list
     this.tracingLine = new TracingLine(this.theCannon, this.player);
-    this.jumpPad = new JumpPad(-500, height - 50, 200, 28);
-    this.speedPad = new SpeedPad(-500, height - 50, 200, 28);
 
     // // add extra game object list to keep it ordered
     this.blocks = new GameObjectList();
@@ -49,7 +47,6 @@ class Level extends GameObjectList {
     this.add(this.theCannon);
     this.add(this.tracingLine);
     this.add(this.blocks);
-    this.add(this.jumpPad);
     this.add(this.scoreText);
 
   }
@@ -57,14 +54,13 @@ class Level extends GameObjectList {
   update() {
     super.update();
 
+    this.lastMousePressed;
+
     if (this.theCannon.shootingFase == 3) {
       this.player.visible = true;
     } else {
       this.player.visible = false;
     }
-
-    this.jumpPad.collisions = Matter.Query.collides(this.jumpPad.body, [this.player.body]);
-    this.speedPad.collisions = Matter.Query.collides(this.speedPad.body, [this.player.body]);
 
     this.position = createVector(width / 2, height / 2) - this.player.position;
 
@@ -80,6 +76,11 @@ class Level extends GameObjectList {
 
     }
 
+    if(mouseIsPressed && this.lastMousePressed == false){
+      gameEnvironment.gameStateManager.switchTo("LevelSelect");
+    }
+
+    this.lastMousePressed = mouseIsPressed;
   }
 
 }

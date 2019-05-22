@@ -1,51 +1,29 @@
-class JumpPad extends SpriteGameObject {
+class JumpPad extends SquareEffect {
 
-  constructor(x, y, w, h, sprite = assets.jumppad, options = null){
+  constructor(x, y, w, h, otherBody = null){
     // pass variables to upper class
-    super(x, y, sprite, w, h);
+    super(x, y, w, h, otherBody);
 
     // save variables to object
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
-    this.sprite = sprite;
-
-    // add matter.js options for physics
-    this.options = options;
+    this.sprite = assets.jumppad;
 
     // add rigidbody physics to box
-    this.body = Matter.Bodies.rectangle(this.x, this.y, this.w, this.h, this.options);
-    //this.body.isStatic = true;
+    this.body = Matter.Bodies.rectangle(this.x, this.y, this.w, this.h);
 
-    this.collisions = [];
-  }
+    this.effect = function (otherBody) {
+      this.vertices = this.body.vertices;
 
-  update() {
+      Matter.Body.setVelocity(otherBody, {
+        x: 15 * -((this.vertices[0].y - this.vertices[1].y) / this.w) + otherBody.velocity.x,
+        y: 15 * ((this.vertices[0].x - this.vertices[1].x) / this.w) + otherBody.velocity.y
+      });
+      assets.jumpsound.play();
 
-    super.update();
-
-    this.vertices = this.body.vertices;
-
-    if(this.collisions.length >= 1){
-
-      for(let i = 0; i < this.collisions.length; i++){
-
-        if(this.vertices[0].x < this.collisions[i].bodyB.position.x && this.vertices[1].x > this.collisions[i].bodyB.position.x || this.vertices[1].x < this.collisions[i].bodyB.position.x && this.vertices[0].x > this.collisions[i].bodyB.position.x){
-
-          if(abs(this.collisions[i].bodyA.position.y * 2 - this.vertices[0].y - this.vertices[1].y) <= abs(this.collisions[i].bodyA.position.y * 2 - this.vertices[2].y - this.vertices[3].y)){
-            Matter.Body.setVelocity(this.collisions[i].bodyA, {
-              x: 15 * -((this.vertices[0].y - this.vertices[1].y) / this.w) + this.collisions[i].bodyA.velocity.x,
-              y: 15 * ((this.vertices[0].x - this.vertices[1].x) / this.w) + this.collisions[i].bodyA.velocity.y
-            });
-
-          }
-
-        }
-
-      }
-
-    }
+    };
 
   }
 

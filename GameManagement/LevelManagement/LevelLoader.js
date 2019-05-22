@@ -21,7 +21,7 @@ class LevelLoader {
   }
 
 
-  loadLevel(index, state, player) {
+  loadLevel(index, state, player, nigger) {
 
     let level = this.levels.getLevel(index);
 
@@ -58,7 +58,7 @@ class LevelLoader {
 
       } else if (level[i][0] == 3) {
 
-        let jumpPad = new JumpPad(level[i][1], level[i][2], player.body);
+        let jumpPad = new JumpPad(level[i][1], level[i][2], assets.jumppad.width, assets.jumppad.height, player.body);
         Matter.Body.setAngle(jumpPad.body, level[i][5]);
 
         state.blocks.add(jumpPad);
@@ -67,6 +67,7 @@ class LevelLoader {
 
         let texture = assets.dirt;
         let squareBox = new SquareBox(level[i][1], level[i][2], texture, texture.width, texture.height, {friction: 0.5});
+        Matter.Body.setStatic(squareBox.body, true);
         squareBox.body.density = 0.3;
         squareBox.body.friction = 0.9;
         Matter.Body.setAngle(squareBox.body, level[i][5]);
@@ -76,6 +77,7 @@ class LevelLoader {
 
         let texture = assets.stone;
         let squareBox = new SquareBox(level[i][1], level[i][2], texture, texture.width, texture.height, {friction: 0.5});
+        Matter.Body.setStatic(squareBox.body, true);
         squareBox.body.density = 0.8;
         squareBox.body.friction = 1;
         Matter.Body.setAngle(squareBox.body, level[i][5]);
@@ -84,18 +86,22 @@ class LevelLoader {
       } else if (level[i][0] == 6) {
 
         let texture = assets.coin;
-        let coin = new Coin(level[i][1], level[i][2], texture, texture.width, texture.height, player.body);
+        let coin = new Coin(level[i][1], level[i][2], texture, texture.width, texture.height, player.body, nigger);
         Matter.Body.setAngle(coin.body, level[i][5]);
         state.blocks.add(coin);
 
       } else if (level[i][0] == 7){
-        let texture = assets.speedpad;
-        let speedPad = new SpeedPad(level[i][1], level[i][2], texture, texture.width, texture.height, player.body);
+        let speedPad = new SpeedPad(level[i][1], level[i][2], texture.width, texture.height, player.body);
         Matter.Body.setAngle(speedPad.body, level[i][5]);
+
         state.blocks.add(speedPad);
+      } else if (level[i][0] == 8){
+        let water = new Water(level[i][1], level[i][2], texture.width, texture.height, player.body);
+        Matter.Body.setAngle(water.body, level[i][5]);
+        Matter.Body.setStatic(water.body, true);
+
+        state.blocks.add(water);
       }
-
-
     }
   }
 }

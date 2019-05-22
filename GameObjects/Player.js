@@ -26,6 +26,8 @@ class Player extends GameObject {
 
   update() {
     super.update();
+
+    this.frictionAir = 0.01;
   }
 
   draw() {

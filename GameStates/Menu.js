@@ -29,7 +29,7 @@ class Menu extends GameObjectList{
   draw(){
     // draw box
     fill(200);
-    rect(this.x, this.y, this.w, this.h);
+    image(assets.mainbg, this.x, this.y, this.w, this.h);
     image(assets.button, this.x + this.w / 5, this.y + this.h * (2 / 3), this.w / 5, this.h / 5);
     image(assets.button, this.x + this.w * (3 / 5), this.y + this.h * (2 / 3), this.w / 5, this.h / 5);
     textAlign(CENTER);
