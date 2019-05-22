@@ -21,11 +21,14 @@ function setup() {
   // Creates gameEnvironment.
   gameEnvironment = new GameEnvironment();
   // add new states in the state list.
+  let level = new Level();
   gameEnvironment.gameStateManager.add(new PlayingState(), "PlayingState");
   gameEnvironment.gameStateManager.add(new GameEnd(), "GameEnd");
-  gameEnvironment.gameStateManager.add(new Level(), "Level");
-  // change scene to first in array.
-  gameEnvironment.gameStateManager.switchTo("PlayingState");
+  gameEnvironment.gameStateManager.add(level, "Level");
+  gameEnvironment.gameStateManager.add(new Menu(), "Menu");
+  gameEnvironment.gameStateManager.add(new LevelSelect(level), "LevelSelect");
+  // change scene to startscreen.
+  gameEnvironment.gameStateManager.switchTo("Menu");
 }
 
 function draw() {

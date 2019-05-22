@@ -1,11 +1,11 @@
 class Coin extends SquareEffect {
 
-  constructor(x, y, texture, w, h, otherBody = null, nigger) {
+  constructor(x, y, texture, w, h, otherBody = null, coins) {
 
     super(x, y, w, h, otherBody);
 
     this.life = true;
-    this.coinCounter = nigger;
+    this.coinCounter = coins;
 
     this.currentSinusTimer = 1;
     this.sinusTimer = 30;

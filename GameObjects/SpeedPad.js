@@ -31,18 +31,18 @@ class SpeedPad extends GameObject{
 
       for(let i = 0; i < this.collisions.length; i++){
 
-        if(this.vertices[0].x < this.collisions[i].bodyB.position.x && this.vertices[1].x > this.collisions[i].bodyB.position.x){
+        if(this.vertices[0].x < this.collisions[i].bodyA.position.x && this.vertices[1].x > this.collisions[i].bodyA.position.x){
 
-          if(0 < (this.vertices[0].y + this.vertices[1].y + this.vertices[2].y + this.vertices[3].y - this.collisions[i].bodyB.position.y * 4) / 4){
+          if(abs(this.collisions[i].bodyA.position.y * 2 - this.vertices[0].y - this.vertices[1].y) <= abs(this.collisions[i].bodyA.position.y * 2 - this.vertices[2].y - this.vertices[3].y)){
             if(this.flipped){
-              Matter.Body.setVelocity(this.collisions[i].bodyB, {
-                x: this.collisions[i].bodyB.velocity.x - (this.vertices[1].x - this.vertices[0].x) / this.w,
-                y: this.collisions[i].bodyB.velocity.y - (this.vertices[0].y - this.vertices[1].y) / this.w
+              Matter.Body.setVelocity(this.collisions[i].bodyA, {
+                x: this.collisions[i].bodyA.velocity.x - (this.vertices[1].x - this.vertices[0].x) / this.w,
+                y: this.collisions[i].bodyA.velocity.y - (this.vertices[0].y - this.vertices[1].y) / this.w
               });
             }else{
-              Matter.Body.setVelocity(this.collisions[i].bodyB, {
-                x: this.collisions[i].bodyB.velocity.x - (this.vertices[0].x - this.vertices[1].x) / this.w,
-                y: this.collisions[i].bodyB.velocity.y - (this.vertices[0].y - this.vertices[1].y) / this.w
+              Matter.Body.setVelocity(this.collisions[i].bodyA, {
+                x: this.collisions[i].bodyA.velocity.x - (this.vertices[0].x - this.vertices[1].x) / this.w,
+                y: this.collisions[i].bodyA.velocity.y - (this.vertices[0].y - this.vertices[1].y) / this.w
               });
             }
           }

@@ -22,14 +22,17 @@ class Level extends GameObjectList {
     // add new object and add to object list
     this.tracingLine = new TracingLine(this.theCannon, this.player);
     this.jumpPad = new JumpPad(width - 100, height - 50, 200, 28);
+    this.speedPad = new SpeedPad(width - 100, height - 50, 200, 28);
 
     // // add extra game object list to keep it ordered
     this.blocks = new GameObjectList();
 
     // Load level
     this.levelLoader = new LevelLoader();
-    this.levelLoader.loadLevel(6, this, this.player, this.coinCounter);
-    this.levelWidth = this.levelLoader.levels.levels[6][0][0];
+    if (this.info != null){
+      this.levelLoader.loadLevel(this.info, this, this.player, this.coinCounter);
+      this.levelWidth = this.levelLoader.levels.levels[this.info][0][0];
+    }
 
     this.scoreText = new ScoreBoard(50, 50, this.coinCounter);
 
@@ -66,22 +69,18 @@ class Level extends GameObjectList {
     }
 
     if (this.theCannon.shootingFase == 3 && this.player.body.speed < 0.30) {
-      gameEnvironment.gameStateManager.switchTo("PlayingState");
+      //gameEnvironment.gameStateManager.switchTo("PlayingState");
+    }
+
+    for(let i = 0; i < this.blocks.children.length; i++){
+      this.jumpPad.collisions = Matter.Query.collides(this.jumpPad.body, [this.blocks.children[i].body]);
+      this.speedPad.collisions = Matter.Query.collides(this.speedPad.body, [this.blocks.children[i].body]);
     }
 
     this.jumpPad.collisions = Matter.Query.collides(this.jumpPad.body, [this.player.body]);
+    this.speedPad.collisions = Matter.Query.collides(this.speedPad.body, [this.player.body]);
 
     this.position = createVector(width / 2, height / 2) - this.player.position;
-    //debugger;
-
-
-    //this.jumpPad.collidesWith(this.player.body);
-
-    // for (let i = 0; i < this.children.length; i++) {
-    //   if (Array.isArray(this.children[i])) {
-    //
-    //   }
-    // }
 
     cam.setCam(width / 2 - this.player.body.position.x, 0);
 

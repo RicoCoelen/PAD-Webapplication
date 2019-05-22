@@ -21,7 +21,7 @@ class LevelLoader {
   }
 
 
-  loadLevel(index, state, player, nigger) {
+  loadLevel(index, state, player, coins) {
 
     let level = this.levels.getLevel(index);
 
@@ -63,10 +63,6 @@ class LevelLoader {
 
         state.blocks.add(jumpPad);
 
-      } else if (level[i][0] == 2) {
-
-        state.blocks.add(new SquareBox(level[i][1], level[i][2], 1, 167, 25))
-
       } else if (level[i][0] == 4) {
 
         let texture = assets.dirt;
@@ -88,7 +84,7 @@ class LevelLoader {
       } else if (level[i][0] == 6) {
 
         let texture = assets.coin;
-        let coin = new Coin(level[i][1], level[i][2], texture, texture.width, texture.height, player.body, nigger);
+        let coin = new Coin(level[i][1], level[i][2], texture, texture.width, texture.height, player.body, coins);
         Matter.Body.setAngle(coin.body, level[i][5]);
         state.blocks.add(coin);
 

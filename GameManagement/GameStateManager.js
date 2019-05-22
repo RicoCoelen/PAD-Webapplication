@@ -35,4 +35,13 @@ class GameStateManager {
       this.currentGameState.reset();
     }
   }
+
+  setGameState(name, info = null) {
+
+    background(0);
+    this.currentGameState = this.children[name];
+    this.currentGameState.info = info;
+    this.currentGameState.reset();
+
+  }
 }

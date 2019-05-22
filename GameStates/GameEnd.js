@@ -1,6 +1,6 @@
 class GameEnd extends GameObjectList {
 
-  constructor(coinIndex) {
+  constructor() {
 
     super();
     this.reset();

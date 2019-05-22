@@ -16,7 +16,7 @@ class JumpPad extends SpriteGameObject {
 
     // add rigidbody physics to box
     this.body = Matter.Bodies.rectangle(this.x, this.y, this.w, this.h, this.options);
-    this.body.isStatic = true;
+    //this.body.isStatic = true;
 
     this.collisions = [];
   }
@@ -31,12 +31,16 @@ class JumpPad extends SpriteGameObject {
 
       for(let i = 0; i < this.collisions.length; i++){
 
-        if(this.vertices[0].x < this.collisions[i].bodyB.position.x && this.vertices[1].x > this.collisions[i].bodyB.position.x){
+        if(this.vertices[0].x < this.collisions[i].bodyB.position.x && this.vertices[1].x > this.collisions[i].bodyB.position.x || this.vertices[1].x < this.collisions[i].bodyB.position.x && this.vertices[0].x > this.collisions[i].bodyB.position.x){
 
-          Matter.Body.setVelocity(this.collisions[i].bodyB, {
-            x: 5 * -((this.vertices[0].y - this.vertices[1].y) / this.w),
-            y: 5 * ((this.vertices[0].x - this.vertices[1].x) / this.w)
-          });
+          if(abs(this.collisions[i].bodyA.position.y * 2 - this.vertices[0].y - this.vertices[1].y) <= abs(this.collisions[i].bodyA.position.y * 2 - this.vertices[2].y - this.vertices[3].y)){
+            Matter.Body.setVelocity(this.collisions[i].bodyA, {
+              x: 15 * -((this.vertices[0].y - this.vertices[1].y) / this.w) + this.collisions[i].bodyA.velocity.x,
+              y: 15 * ((this.vertices[0].x - this.vertices[1].x) / this.w) + this.collisions[i].bodyA.velocity.y
+            });
+
+          }
+
         }
 
       }
