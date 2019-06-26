@@ -2,10 +2,12 @@ class LevelLoader {
 
   constructor() {
 
+    // Initiates an instance of levels which holds the level in array form
     this.levels = new Levels();
 
   }
 
+  // Returns an integer that corresponds to a level that was not in forbiddenLevels
   randomLevel(forbiddenLevels) {
 
     let random = round(random(1, this.levels.levels.length));
@@ -20,16 +22,19 @@ class LevelLoader {
 
   }
 
-
+  // Takes in the current state and the level to load and loads the level into the current state
   loadLevel(index, state, player, coins) {
 
+    // Gets the array of the selected level
     let level = this.levels.getLevel(index);
 
+    // Adds standard invisible Boundaries to the state
     state.blocks.add(new Boundary(-100, height / 2, 200, 5000));
     state.blocks.add(new Boundary(level[0][0] + 100, height / 2, 200, 5000));
     state.blocks.add(new Boundary(width / 2, -100, 5000, 200));
     state.blocks.add(new Boundary(width / 2, height + 100, 5000, 200));
 
+    // Loops through the level array and adds the objects in it to the scene
     for (let i = 1; i < level.length; i++) {
 
       if (level[i][0] == 0) {

@@ -16,10 +16,10 @@ class Menu extends GameObjectList{
 
     if(mouseIsPressed && this.lastMousePressed == false){
       if(this.mouseX > this.x + this.w / 5 && this.mouseX < this.x + this.w * (2 / 5) && this.mouseY > this.y + this.h * (2 / 3) && this.mouseY < this.h / 5 + this.y + this.h * (2 / 3)){
-        gameEnvironment.gameStateManager.switchTo("PlayingState");
+        gameStateManager.switchTo("PlayingState");
       }
       if(this.mouseX > this.x + this.w * (3 / 5) && this.mouseX < this.x + this.w * (4 / 5) && this.mouseY > this.y + this.h * (2 / 3) && this.mouseY < this.h / 5 + this.y + this.h * (2 / 3)){
-        gameEnvironment.gameStateManager.switchTo("LevelSelect");
+        gameStateManager.switchTo("LevelSelect");
       }
     }
 

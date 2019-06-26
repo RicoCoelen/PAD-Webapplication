@@ -33,12 +33,12 @@ class LevelSelect extends GameObjectList {
         for (let j = 0; j < this.columns; j++) {
           if (mouseX < (i * this.buttonWidth * this.horSpacing) + this.leftOffset + this.buttonWidth / 2 && mouseX > (i * this.buttonWidth * this.horSpacing) + this.leftOffset - this.buttonWidth &&
               mouseY < (j * this.buttonHeight * this.vertSpacing) + this.topOffset + this.buttonHeight / 2 && mouseY > (j * this.buttonHeight * this.vertSpacing) + this.topOffset - this.buttonHeight) {
-            gameEnvironment.gameStateManager.setGameState("Level", j * this.rows + i + 1);
+            gameStateManager.setGameState("Level", j * this.rows + i + 1);
           }
         }
       }
       if(mouseX > 540 - this.buttonWidth / 2 && mouseX < 540 + this.buttonWidth / 2 && mouseY > 500 - this.buttonHeight / 2 && mouseY < 500 + this.buttonHeight / 2){
-        gameEnvironment.gameStateManager.switchTo("Menu");
+        gameStateManager.switchTo("Menu");
       }
     }
 

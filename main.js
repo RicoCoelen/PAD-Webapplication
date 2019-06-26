@@ -1,13 +1,15 @@
-var gameEnvironment;
-var world;
-var engine;
-var assets;
-let levelmusic;
-let cam;
+var gameStateManager; // Holds instances of game states and can switch between them
+var world; // 
+var engine; //
+var assets; // Class that holds all the assets in a usable format
+let levelmusic; //
+let cam; // The camera for the game
 
 function preload() {
+
   // preload() runs once
   assets = new AssetLoader();
+
 }
 
 function setup() {
@@ -19,21 +21,27 @@ function setup() {
   createCanvas(1080, 600);
 
   // Creates gameEnvironment.
-  gameEnvironment = new GameEnvironment();
+  gameStateManager = new GameStateManager();
+
   // add new states in the state list.
   let level = new Level();
-  gameEnvironment.gameStateManager.add(new PlayingState(), "PlayingState");
-  gameEnvironment.gameStateManager.add(new GameEnd(), "GameEnd");
-  gameEnvironment.gameStateManager.add(level, "Level");
-  gameEnvironment.gameStateManager.add(new Menu(), "Menu");
-  gameEnvironment.gameStateManager.add(new LevelSelect(level), "LevelSelect");
+  gameStateManager.add(new PlayingState(), "PlayingState");
+  gameStateManager.add(new GameEnd(), "GameEnd");
+  gameStateManager.add(level, "Level");
+  gameStateManager.add(new Menu(), "Menu");
+  gameStateManager.add(new LevelSelect(level), "LevelSelect");
+
   // change scene to startscreen.
-  gameEnvironment.gameStateManager.switchTo("Menu");
+  gameStateManager.switchTo("Menu");
+
 }
 
 function draw() {
+
   // refresh background.
   background(140);
+
   //Update and draw the currentGameState.
-  gameEnvironment.updateAndDraw();
+  gameStateManager.updateAndDraw();
+
 }
